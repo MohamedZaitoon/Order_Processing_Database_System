@@ -27,7 +27,7 @@ public class BookController {
 			//`add_book`(bISBN ,bTitle ,bCategory , bSelling_price ,
 			//bno_copies ,bthreshold , bpublisher,bpyear) 
 			
-			CallableStatement stmt = con.prepareCall("{call add_book(?,?,?,?,?,?,?,?)}");
+			CallableStatement stmt = con.prepareCall("{CALL add_book(?,?,?,?,?,?,?,?)}");
 			stmt.setString(1, book.getISBN());
 			stmt.setString(2,  book.getTitle());
 			stmt.setString(3, book.getCategory());
@@ -64,7 +64,7 @@ public class BookController {
 			return or;
 		}
 		try { 
-			String query = "insert into authors values ";
+			String query = "INSERT INTO authors VALUES ";
 			for(String author: authors) 
 				query+= "('" +author+"','"+ISBN+"')";
 			query = query.replaceAll("\\)\\(", "),(");
@@ -84,7 +84,7 @@ public class BookController {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			ResultSet q = stmt.executeQuery("desc book category");
+			ResultSet q = stmt.executeQuery("DESC book category");
 			q.next();
 			String	cats =  q.getString(2).replaceAll("\\)", "").replaceAll("\\(", "").replace("enum","");
 			String[] arr = cats.split(",");

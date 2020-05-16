@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,15 +13,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-
-import javafx.scene.control.ListView;
-
-import javafx.scene.control.Label;
-
 import javafx.scene.control.ComboBox;
-
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Book;
 import model.BookController;
@@ -89,7 +82,7 @@ public class AddBookController implements Initializable{
 	 * Adding name of author at authortxt text field to list of authors.
 	 */
 	@FXML
-	public void addAuthorLisenter(Event event) {
+	public void addAuthorListener(Event event) {
 		String authorName = authorTxt.getText().trim();
 		if(!authorName.isEmpty()&&!authors.contains(authorName)) {
 			authors.add(authorName);
@@ -102,7 +95,7 @@ public class AddBookController implements Initializable{
 	 * Adding book to database
 	 */
 	@FXML
-	public void addBookLisenter(MouseEvent event) {
+	public void addBookListener(MouseEvent event) {
 		if(!bookController.isConnected()) {
 			errorLabel.setText("Server is disconnected");
 			return;
@@ -133,7 +126,7 @@ public class AddBookController implements Initializable{
 	}
 	
 	@FXML
-    void deleteSelectedAuthorLisenter(ActionEvent event) {
+    void deleteSelectedAuthorListener(ActionEvent event) {
 		 deleteAuthorBtn.setOnAction(new EventHandler<ActionEvent>() {
 		        @Override
 		        public void handle(ActionEvent event) {
@@ -199,20 +192,20 @@ public class AddBookController implements Initializable{
 			authors = new ArrayList<>();
 			
 			//set validation input to text field
-			addValidation(noCopiesTxt, DIGRGX, NDIGRGX);
-			addValidation(thresholdTxt, DIGRGX, NDIGRGX);
-			addValidation(isbnTxt, DIGRGX, NDIGRGX);
-			addValidation(sellingPriceTxt, DIGRGX, NDIGRGX);
-			addValidation(authorTxt, WORDRGX, NWORDRGX);
+			UtilControl.addValidation(noCopiesTxt, DIGRGX, NDIGRGX);
+			UtilControl.addValidation(thresholdTxt, DIGRGX, NDIGRGX);
+			UtilControl.addValidation(isbnTxt, DIGRGX, NDIGRGX);
+			UtilControl.addValidation(sellingPriceTxt, DIGRGX, NDIGRGX);
+			UtilControl.addValidation(authorTxt, WORDRGX, NWORDRGX);
 			
 			//set limitation length of each text field
-			addTextLimiter(isbnTxt, bookController.getISBNMaxLength());
-			addTextLimiter(titleTxt, bookController.getTitleMaxLenth());
-			addTextLimiter(publishertxt, bookController.getPublisherMaxLength());
-			addTextLimiter(authorTxt, bookController.getAuthorMaxLength());
-			addTextLimiter(noCopiesTxt, MAXINTLENGHT);
-			addTextLimiter(thresholdTxt, MAXINTLENGHT);
-			addTextLimiter(sellingPriceTxt, MAXINTLENGHT);
+			UtilControl.addTextLimiter(isbnTxt, bookController.getISBNMaxLength());
+			UtilControl.addTextLimiter(titleTxt, bookController.getTitleMaxLenth());
+			UtilControl.addTextLimiter(publishertxt, bookController.getPublisherMaxLength());
+			UtilControl.addTextLimiter(authorTxt, bookController.getAuthorMaxLength());
+			UtilControl.addTextLimiter(noCopiesTxt, MAXINTLENGHT);
+			UtilControl.addTextLimiter(thresholdTxt, MAXINTLENGHT);
+			UtilControl.addTextLimiter(sellingPriceTxt, MAXINTLENGHT);
 			
 			//initiate combo boxes
 			initCatigories();
@@ -261,39 +254,4 @@ public class AddBookController implements Initializable{
 		ObservableList<Integer> pYears = FXCollections.observableArrayList(years);
 		yearComBx.setItems(pYears);
 	}
-	
-	
-	
-	/*
-	 * Set max length of input to Textfield
-	 */
-	public static void addTextLimiter(final TextField tf, final int maxLength) {
-	    tf.textProperty().addListener(new ChangeListener<String>() {
-	        @Override
-	        public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-	            if (tf.getText().length() > maxLength) {
-	                String s = tf.getText().substring(0, maxLength);
-	                tf.setText(s);
-	            }
-	        }
-	    });
-	}
-	
-	
-	/*
-	 * Enter only numbers
-	 */
-	public static void addValidation(final TextField tf, String rgx, String nRgx) {
-	    tf.textProperty().addListener((args, oldValue, newValue)->{
-	    	
-	    	if (! newValue.matches(rgx)) {
-	            tf.setText(newValue.replaceAll(nRgx, ""));
-	        }
-	    });
-	}
-	
-
-	
-	
-	
 }

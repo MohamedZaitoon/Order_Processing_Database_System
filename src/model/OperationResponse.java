@@ -1,15 +1,24 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
 public class OperationResponse {
-	
+
 	private boolean executedSuccessfuly;
-	
+
 	private String errorMessage;
-	
+
+	private ResultSet resultSet;
+
+
+	public ResultSet getResultSet() {
+		return resultSet;
+	}
+
 	public OperationResponse() {
 	}
 
-	
 	public boolean isExecutedSuccessfuly() {
 		return executedSuccessfuly;
 	}
@@ -24,5 +33,9 @@ public class OperationResponse {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public void setResultSet(ResultSet resultSet) {
+		this.resultSet = resultSet;
 	}
 }
