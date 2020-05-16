@@ -20,6 +20,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ConnectionUtil;
+import utils.StatusUtil;
+import utils.User;
+import utils.StatusUtil.Status;
 
 public class LoginController implements Initializable {
 	
@@ -42,14 +45,15 @@ public class LoginController implements Initializable {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     
+    private final String HOME_URL = "../fxml/Home.fxml";
+    private final String SIGNUP_URL = "../fxml/SignUp.fxml";
+    
     @FXML
     public void handleButtonAction(MouseEvent event) {
-        if (event.getSource() == btnSignin) {
-            if (logIn().equals("Success")) {
-                changeScene(event, "../fxml/Home.fxml");
-            }
+        if (event.getSource() == btnSignin && logIn().equals(Status.SUCCESS)) {
+        	changeScene(event, HOME_URL);
         } else if (event.getSource() == btnSignup) {
-        	changeScene(event, "../fxml/SignUp.fxml");
+        	changeScene(event, SIGNUP_URL);
         }
     }
     
@@ -63,7 +67,7 @@ public class LoginController implements Initializable {
             
             if (event.getSource() == btnSignin) {
             	HomeController controller = new HomeController();
-            	controller.setUserEmail(txtUsername.getText());
+            	controller.setUser(getUserInfo(resultSet));
             }
             
             stage.close();
@@ -77,26 +81,20 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (connection == null) {
-            lblErrors.setTextFill(Color.TOMATO);
-            lblErrors.setText("Server Connection Failure");
-        } else {
-            lblErrors.setTextFill(Color.GREEN);
-            lblErrors.setText("Connected to Server");
-        }
+        StatusUtil.notifyConnectionStatus(connection, lblErrors);
     }
     
     public LoginController() {
         connection = ConnectionUtil.connectDatabase();
     }
     
-    private String logIn() {
-        String status = "Success";
+    private Status logIn() {
+        Status status = Status.SUCCESS;
         String email = txtUsername.getText();
         String password = txtPassword.getText();
         if(email.isEmpty() || password.isEmpty()) {
-            setLblError(Color.TOMATO, "Empty credentials");
-            status = "Error";
+        	StatusUtil.setLblError(lblErrors, Color.TOMATO, "Empty credentials");
+            status = Status.ERROR;
         } else {
             String sql = "SELECT * FROM users WHERE email = ? AND user_password = ?";
             try {
@@ -105,23 +103,29 @@ public class LoginController implements Initializable {
                 preparedStatement.setString(2, password);
                 resultSet = preparedStatement.executeQuery();
                 if (!resultSet.next()) {
-                    setLblError(Color.TOMATO, "Enter Correct Email/Password");
-                    status = "Error";
+                	StatusUtil.setLblError(lblErrors, Color.TOMATO, "Enter Correct Email/Password");
+                    status = Status.ERROR;
                 } else {
-                    setLblError(Color.GREEN, "Login Successful..Redirecting..");
+                    StatusUtil.setLblError(lblErrors, Color.GREEN, "Login Successful..Redirecting..");
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
-                status = "Exception";
+                status = Status.EXCEPTION;
             }
         }
         
         return status;
     }
     
-    private void setLblError(Color color, String text) {
-        lblErrors.setTextFill(color);
-        lblErrors.setText(text);
-        System.out.println(text);
+    private User getUserInfo(ResultSet rs) {
+    	try {
+    		User user = new User();
+    		user.setUserInfo(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+        			rs.getString(6), rs.getString(7), rs.getString(8));
+    		return user;
+    	} catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
     }
 }

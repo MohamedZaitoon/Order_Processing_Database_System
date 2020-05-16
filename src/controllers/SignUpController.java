@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -24,7 +23,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ConnectionUtil;
-
+import utils.StatusUtil;
+import utils.StatusUtil.Status;
+import utils.User;
 
 public class SignUpController implements Initializable {
 	
@@ -70,25 +71,43 @@ public class SignUpController implements Initializable {
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    private User user;
+    
+    private final String HOME_URL = "../fxml/Home.fxml";
     
     public SignUpController() {
+    	user = new User();
     	connection = ConnectionUtil.connectDatabase();
-    }
-    
-    private void setLblError(Label label, Color color, String text) {
-        label.setTextFill(color);
-        label.setText(text);
-        System.out.println(text);
     }
     
     @FXML
     public void handleButtonAction(MouseEvent event) {
-        if (event.getSource().equals(btnContinue)) {
-            if (signUp().equals("Success")) {
-                changeScene(event, "../fxml/Home.fxml");
-            }
+        if (event.getSource().equals(btnContinue) && signUp().equals(Status.SUCCESS)) {
+        	changeScene(event, HOME_URL);
         } else if (event.getSource().equals(btnResetAll)) {
         	resetAll();
+        }
+    }
+    
+    private void changeScene(MouseEvent event, String path) {
+    	try {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            
+            if (event.getSource() == btnContinue) {
+            	HomeController controller = new HomeController();
+            	controller.setUser(user);
+            }
+            
+            stage.close();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
         }
     }
     
@@ -102,29 +121,7 @@ public class SignUpController implements Initializable {
     	cobxGender.getSelectionModel().clearSelection();
     	dpkbirthdate.getEditor().clear();
     	resetErrors();
-    	checkConnection();
-    }
-    
-    private void changeScene(MouseEvent event, String path) {
-    	try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            
-            if (event.getSource() == btnContinue) {
-            	HomeController controller = new HomeController();
-            	controller.setUserEmail(txtEmail.getText());
-            }
-            
-            stage.close();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }
+    	StatusUtil.notifyConnectionStatus(connection, lblErrors);
     }
     
     private void resetErrors() {
@@ -133,67 +130,100 @@ public class SignUpController implements Initializable {
     	lblUsername.setText("");
     }
     
-    private String signUp() {
-        String status = "Success";
-        String firstname = txtFirstname.getText();
-        String lastname = txtLastname.getText();
-        String email = txtEmail.getText();
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
-        String passwordConfirm = txtPasswordConfirm.getText();
-        String gender = cobxGender.getValue();
-        LocalDate birthdate = dpkbirthdate.getValue();
+    private Status signUp() {
+    	Status status = Status.SUCCESS;
+    	setSignUpInfo();
+    	String passwordConfirm = txtPasswordConfirm.getText();
         resetErrors();
         
-        if(firstname.isEmpty() || lastname.isEmpty() || email.isEmpty()
-        		|| username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()
-        		|| gender == null || birthdate == null) {
-            setLblError(lblErrors, Color.TOMATO, "Empty credentials");
-            status = "Error";
+        if(user.getFirstname().isEmpty() || user.getLastname().isEmpty() || user.getEmail().isEmpty()
+        		|| user.getUsername().isEmpty() || user.getPassword().isEmpty()
+        		|| passwordConfirm.isEmpty() || user.getGender() == null
+        		|| user.getBirthdate() == null) {
+            StatusUtil.setLblError(lblErrors, Color.TOMATO, "Empty credentials");
+            status = Status.ERROR;
         } else {
-        	if (!password.equals(passwordConfirm)) {
-        		setLblError(lblErrors, Color.TOMATO, "Invalid Password Confirmation");
-                status = "Error";
+        	System.out.println(user.getPassword());
+        	System.out.println(passwordConfirm);
+        	System.out.println(!user.getPassword().equals(passwordConfirm));
+        	if (!user.getPassword().equals(passwordConfirm)) {
+        		StatusUtil.setLblError(lblErrors, Color.TOMATO, "Invalid Password Confirmation");
+                status = Status.ERROR;
         	}
-            try {
-            	String findEmail = "SELECT * FROM users WHERE email = ?";
-            	preparedStatement = connection.prepareStatement(findEmail);
-            	preparedStatement.setString(1, email);
-            	resultSet = preparedStatement.executeQuery();
-            	if (resultSet.next()) {
-                    setLblError(lblEmail, Color.TOMATO, "Email already exists");
-                    status = "Error";
-                } 
-            	
-            	String findUsername = "SELECT * FROM users WHERE username = ?";
-            	preparedStatement = connection.prepareStatement(findUsername);
-            	preparedStatement.setString(1, username);
-            	resultSet = preparedStatement.executeQuery();
-            	if (resultSet.next()) {
-                    setLblError(lblUsername, Color.TOMATO, "Username already exists");
-                    status = "Error";
-                }
-            	
-            	if (status == "Success") {
-            		String sql = "INSERT INTO users VALUES(NULL, ?, ?, ?, ? , ? , ?, ?, ?)";
-            		preparedStatement = connection.prepareStatement(sql);
-                	preparedStatement.setString(1, email);
-                	preparedStatement.setString(2, firstname);
-                	preparedStatement.setString(3, lastname);
-                	preparedStatement.setString(4, username);
-                	preparedStatement.setString(5, birthdate.toString());
-                	preparedStatement.setString(6, "Customer");
-                	preparedStatement.setString(7, mapGender(gender));
-                	preparedStatement.setString(8, password);
-                	preparedStatement.executeUpdate();
-            	}
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                status = "Exception";
-            }
+        	
+        	status = checkEmailExistence(status, user.getEmail());
+        	status = checkUsernameExistence(status, user.getUsername());
+        	
+        	if (status != Status.ERROR) {
+        		status = InsertUser(user);
+        	}
         }
         
         return status;
+    }
+    
+    private void setSignUpInfo() {
+    	user.setEmail(txtEmail.getText());
+    	user.setFirstname(txtFirstname.getText());
+    	user.setLastname(txtLastname.getText());
+    	user.setUsername(txtUsername.getText());
+    	user.setPassword(txtPassword.getText());
+    	user.setGender(cobxGender.getValue());
+    	user.setBirthdate(dpkbirthdate.getValue().toString());
+    }
+    
+    private Status checkEmailExistence(Status prevStatus,String email) {
+    	try {
+    		String sql = "SELECT * FROM users WHERE email = ?";
+        	preparedStatement = connection.prepareStatement(sql);
+        	preparedStatement.setString(1, email);
+        	resultSet = preparedStatement.executeQuery();
+        	if (resultSet.next()) {
+        		StatusUtil.setLblError(lblEmail, Color.TOMATO, "Email already exists");
+        		return Status.ERROR;
+            }
+        	return prevStatus;
+    	} catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return Status.EXCEPTION;
+        }
+    }
+    
+    private Status checkUsernameExistence(Status prevStatus, String username) {
+    	try {
+    		String sql = "SELECT * FROM users WHERE username = ?";
+        	preparedStatement = connection.prepareStatement(sql);
+        	preparedStatement.setString(1, username);
+        	resultSet = preparedStatement.executeQuery();
+        	if (resultSet.next()) {
+        		StatusUtil.setLblError(lblUsername, Color.TOMATO, "Username already exists");
+        		return Status.ERROR;
+            }
+        	return prevStatus;
+    	} catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return Status.EXCEPTION;
+        }
+    }
+    
+    private Status InsertUser(User user) {
+    	try {
+    		String sql = "INSERT INTO users VALUES(NULL, ?, ?, ?, ? , ? , ?, ?, ?)";
+    		preparedStatement = connection.prepareStatement(sql);
+        	preparedStatement.setString(1, user.getEmail());
+        	preparedStatement.setString(2, user.getFirstname());
+        	preparedStatement.setString(3, user.getLastname());
+        	preparedStatement.setString(4, user.getUsername());
+        	preparedStatement.setString(5, user.getBirthdate().toString());
+        	preparedStatement.setString(6, StatusUtil.CUSTOMER);
+        	preparedStatement.setString(7, mapGender(user.getGender()));
+        	preparedStatement.setString(8, user.getPassword());
+        	preparedStatement.executeUpdate();
+        	return Status.SUCCESS;
+    } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return Status.EXCEPTION;
+        }
     }
     
     private String mapGender(String gender) {
@@ -206,20 +236,10 @@ public class SignUpController implements Initializable {
     	return res;
     }
     
-    private void checkConnection() {
-    	if (connection == null) {
-            lblErrors.setTextFill(Color.TOMATO);
-            lblErrors.setText("Server Connection Failure");
-        } else {
-            lblErrors.setTextFill(Color.GREEN);
-            lblErrors.setText("Connected to Server");
-        }
-    }
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		cobxGender.getItems().addAll("Male", "Female", "Other");
-		checkConnection();
+		StatusUtil.notifyConnectionStatus(connection, lblErrors);
 	}
 
 }

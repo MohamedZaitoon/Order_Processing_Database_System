@@ -19,10 +19,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ConnectionUtil;
+import utils.User;
 
 public class HomeController implements Initializable {
 	
-	private String email;
+	private User user;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -30,10 +31,13 @@ public class HomeController implements Initializable {
 	}
 	
 	public HomeController() {
+		
 	}
 	
-	public void setUserEmail(String _email) {
-		email = _email;
+	public void setUser(User user) {
+		if (user != null) {
+			this.user = user;
+		}
 	}
 
 }
