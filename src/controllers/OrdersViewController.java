@@ -15,7 +15,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import model.OperationResponse;
 import model.OrderController;
 
-public class OrdersController implements Initializable {
+public class OrdersViewController implements Initializable {
 	@FXML
 	private TableView ordersTable;
 	@FXML

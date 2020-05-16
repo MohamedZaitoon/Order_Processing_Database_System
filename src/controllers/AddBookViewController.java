@@ -22,7 +22,7 @@ import model.Book;
 import model.BookController;
 import model.OperationResponse;
 
-public class AddBookController implements Initializable{
+public class AddBookViewController implements Initializable{
 	/*
 	 * No. years Available for publication year.
 	 */
