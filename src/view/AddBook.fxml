@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddBookController">
+   <children>
+      <Text layoutX="122.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Book" wrappingWidth="263.13671875">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <VBox layoutX="38.0" layoutY="140.0" prefHeight="286.0" prefWidth="199.0" spacing="10.0">
+         <children>
+            <TextField fx:id="isbnTxt" promptText="ISBN" />
+            <TextField fx:id="titleTxt" promptText="Title" />
+            <TextField fx:id="noCopiesTxt" promptText="Number Of Copies" />
+            <TextField fx:id="thresholdTxt" promptText="Threshold" />
+            <TextField fx:id="sellingPriceTxt" promptText="Selling Price" />
+            <TextField fx:id="publishertxt" promptText="Publisher" />
+            <ComboBox fx:id="categoryComBx" prefHeight="25.0" prefWidth="180.0" promptText="Category" />
+            <ComboBox fx:id="yearComBx" prefHeight="25.0" prefWidth="177.0" promptText="Year" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="TOP_RIGHT" layoutX="246.0" layoutY="140.0" prefHeight="249.0" prefWidth="199.0" spacing="10.0">
+         <children>
+            <TextField fx:id="authorTxt" onAction="#addAuthorLisenter" promptText="Author" />
+            <ListView fx:id="authorList" prefHeight="200.0" prefWidth="200.0" />
+            <HBox prefHeight="35.0" prefWidth="144.0" spacing="5.0">
+               <children>
+                  <Button fx:id="addToAuthBtn" alignment="TOP_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#addAuthorLisenter" prefHeight="25.0" prefWidth="103.0" text="Add To Authors" />
+                  <Button fx:id="deleteAuthorBtn" mnemonicParsing="false" onAction="#deleteSelectedAuthorLisenter" prefHeight="25.0" prefWidth="76.0" text="Delete" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="addBookBtn" layoutX="256.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#addBookLisenter" prefHeight="38.0" prefWidth="177.0" text="Add Book" />
+      <Label fx:id="errorLabel" layoutX="256.0" layoutY="468.0" prefHeight="18.0" prefWidth="218.0" textFill="#dd0c0c" />
+      <Label fx:id="emptyFieldsLbl" layoutX="45.0" layoutY="434.0" prefHeight="25.0" prefWidth="199.0" textFill="#eb0d0d" />
+   </children>
+</AnchorPane>
