@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -56,13 +57,15 @@ public class LoginController implements Initializable {
     	try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource(path)));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
             
             if (event.getSource() == btnSignin) {
-            	HomeController controller = fxmlLoader.<HomeController>getController();
-            	controller.setUserInfo(resultSet);
+            	HomeController controller = new HomeController();
+            	controller.setUserEmail(txtUsername.getText());
             }
+            
             stage.close();
             stage.setScene(scene);
             stage.setResizable(false);

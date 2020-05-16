@@ -21,14 +21,19 @@ import javafx.stage.Stage;
 import utils.ConnectionUtil;
 
 public class HomeController implements Initializable {
+	
+	private String email;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
 	
-	public void setUserInfo(ResultSet info) {
-		
+	public HomeController() {
+	}
+	
+	public void setUserEmail(String _email) {
+		email = _email;
 	}
 
 }
