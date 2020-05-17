@@ -28,6 +28,9 @@ public class Edit_profile_controller {
     
     
     private User user;
+    
+    public void Edit_profile_controller() {
+    }
 
 	public void setUser(User user) {
 		this.user = user;

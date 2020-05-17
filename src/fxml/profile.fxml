@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #ebf1f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.profile_controller">
+<AnchorPane prefHeight="426.0" prefWidth="800.0" style="-fx-background-color: #ebf1f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.profile_controller">
    <children>
       <Label contentDisplay="CENTER" layoutX="351.0" layoutY="14.0" prefHeight="43.0" prefWidth="99.0" text="Profile" textAlignment="CENTER" textFill="#430303" wrapText="true">
          <font>
@@ -69,10 +69,20 @@
             <Image url="@../images/pen.png" />
          </image>
       </ImageView>
-      <Button fx:id="editBt" layoutX="675.0" layoutY="86.0" mnemonicParsing="false" style="-fx-background-color: #ebf1f5;" text="Edit" textFill="#0889e4" underline="true">
+      <Button fx:id="editBt" layoutX="675.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #ebf1f5;" text="Edit" textFill="#0889e4" underline="true">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </Button>
+      <Label layoutX="100.0" layoutY="345.0" text="Birth Date:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Birth_date" layoutX="192.0" layoutY="345.0" text="19/3/1998" textFill="#3d942c" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

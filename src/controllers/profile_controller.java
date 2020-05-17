@@ -33,6 +33,9 @@ public class profile_controller implements Initializable {
     private Label gender;
 
     @FXML
+    private Label Birth_date;
+
+    @FXML
     private Button editBt;
 
     
@@ -42,8 +45,17 @@ public class profile_controller implements Initializable {
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		/*
+		 * user_name.setText(user.getUsername());
+		 * first_name.setText(user.getFirstname());
+		 * last_name.setText(user.getLastname()); Email.setText(user.getEmail());
+		 * gender.setText(user.getGender()); Birth_date.setText(user.getBirthdate());
+		 */
 	}
+
+    public void profile_controller() {
+    }
+
     @FXML
     public void handleButtonAction(MouseEvent event) {
         if (event.getSource() == editBt) {
