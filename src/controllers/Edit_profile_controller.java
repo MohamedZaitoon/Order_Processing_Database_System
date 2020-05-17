@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import utils.User;
 
 public class Edit_profile_controller {
 
@@ -24,5 +25,12 @@ public class Edit_profile_controller {
 
     @FXML
     private Label error;
+    
+    
+    private User user;
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }
