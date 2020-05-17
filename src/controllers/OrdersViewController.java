@@ -63,7 +63,9 @@ public class OrdersViewController implements Initializable {
 				final int selectedIndex = sm.getSelectedIndex();
 				String idOrder = row.get(0).toString().split(",")[0].replaceAll("\\[", "");
 				System.out.println(idOrder);
+				
 				orderCont.confirmOrder(Integer.parseInt(idOrder));
+				
 				ordersTable.getItems().remove(selectedIndex);
 				successLbl.setText("Order "+idOrder+ " Confirmed");
 //				sm.clearSelection();
@@ -79,7 +81,8 @@ public class OrdersViewController implements Initializable {
 			if(orderCont.isConnected()) {
 				OperationResponse or = orderCont.getOrders();
 				if(or.isExecutedSuccessfuly()) {
-					ordersTable = new TableView();
+					ordersTable.getItems().clear(); 
+					ordersTable.getColumns().clear();
 					this.buildTable(or.getResultSet());
 				} else {
 					errorLbl.setText(or.getErrorMessage());
@@ -103,7 +106,6 @@ public class OrdersViewController implements Initializable {
 	
 	private void buildTable(ResultSet rs) {
 		UtilControl.buildTable(ordersTable, data, rs);
-		UtilControl.autoFitTable(ordersTable);
 		UtilControl.disableReorderColumns(ordersTable);
 	}
 }

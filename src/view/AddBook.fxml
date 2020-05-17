@@ -36,7 +36,7 @@
       </VBox>
       <VBox alignment="TOP_RIGHT" layoutX="246.0" layoutY="140.0" prefHeight="249.0" prefWidth="199.0" spacing="10.0">
          <children>
-            <TextField fx:id="authorTxt" onAction="#addAuthorLisetner" promptText="Author" />
+            <TextField fx:id="authorTxt" onAction="#addAuthorListener" promptText="Author" />
             <ListView fx:id="authorList" prefHeight="200.0" prefWidth="200.0" />
             <HBox prefHeight="35.0" prefWidth="144.0" spacing="5.0">
                <children>
