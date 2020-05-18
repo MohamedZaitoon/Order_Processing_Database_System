@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.DatabaseConnection;
 import utils.ConnectionUtil;
 import utils.StatusUtil;
 import utils.User;
@@ -42,7 +43,7 @@ public class Promote_controller implements Initializable {
     
     private User user;
     
-    private final String HOME_URL = "../fxml/Home.fxml";
+    private final String HOME_URL = "../view/ManagerPage.fxml";
     
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
@@ -50,7 +51,7 @@ public class Promote_controller implements Initializable {
     private ResultSet resultSet = null;
     
     public Promote_controller () {
-    	connection = ConnectionUtil.connectDatabase();
+    	connection = DatabaseConnection.getConnection();
     }
 
 	@Override

@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.DatabaseConnection;
 import utils.ConnectionUtil;
 import utils.StatusUtil;
 import utils.User;
@@ -45,7 +46,7 @@ public class Place_orders_controller implements Initializable {
 
     private User user;
     
-    private final String HOME_URL = "../fxml/Home.fxml";
+    private final String HOME_URL = "../view/ManagerPage.fxml";
     
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
@@ -53,7 +54,7 @@ public class Place_orders_controller implements Initializable {
     private ResultSet resultSet = null;
     
     public Place_orders_controller () {
-    	connection = ConnectionUtil.connectDatabase();
+    	connection = DatabaseConnection.getConnection();
     }
 
 	@Override
@@ -103,8 +104,6 @@ public class Place_orders_controller implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
-//            HomeController controller = new HomeController();
-//            controller.setUser(user);
             stage.close();
             stage.setScene(scene);
             stage.setResizable(false);

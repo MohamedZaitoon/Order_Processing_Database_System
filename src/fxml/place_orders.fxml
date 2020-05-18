@@ -6,9 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="600.0" 
-	style="-fx-background-color: #ebf1f5;" xmlns="http://javafx.com/javafx/8.0.171"
-	 xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Place_orders_controller">
+<AnchorPane prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #ebf1f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Place_orders_controller">
    <children>
       <Label layoutX="219.0" layoutY="14.0" text="Place Orders">
          <font>
@@ -20,7 +18,7 @@
       <Label layoutX="100.0" layoutY="190.0" text="Ordered Quantity:" />
       <TextField fx:id="quantity_feild" layoutX="100.0" layoutY="220.0" prefHeight="31.0" prefWidth="196.0" promptText="quantity" />
       <Button layoutX="-400.0" layoutY="-238.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="homeBt" layoutX="513.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Home" textFill="#012c02" />
+      <Button fx:id="homeBt" layoutX="513.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Back" textFill="#012c02" />
       <Button fx:id="addBt" layoutX="520.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Add" textFill="#012c02" />
       <Label fx:id="error" layoutX="100.0" layoutY="294.0" prefHeight="31.0" prefWidth="344.0" />
    </children>

@@ -16,9 +16,9 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="160.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="placeOrderBtn" mnemonicParsing="false" onAction="#placeOrderListenr" prefHeight="59.0" prefWidth="160.0" text="Place Order">
+            <Button mnemonicParsing="false" onAction="#showAddPublisherLayout" prefHeight="59.0" prefWidth="160.0" text="Add Publisher">
                <font>
-                  <Font size="20.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
             <Button fx:id="confirmOrderBtn" mnemonicParsing="false" onAction="#confirmOrderListener" prefHeight="59.0" prefWidth="160.0" text="Confirm Orders">
@@ -36,17 +36,17 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#showAddPublisherLayout" prefHeight="59.0" prefWidth="160.0" text="Add Publisher">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Button fx:id="reportsBtn" mnemonicParsing="false" onAction="#showReportsListener" prefHeight="59.0" prefWidth="160.0" text="Reports">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
             <Button fx:id="promoteBtn" mnemonicParsing="false" onAction="#promoteListener" prefHeight="59.0" prefWidth="160.0" text="Promote">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="placeOrderBtn" mnemonicParsing="false" onAction="#placeOrderListenr" prefHeight="59.0" prefWidth="160.0" text="Place Order">
                <font>
                   <Font size="20.0" />
                </font>
@@ -92,7 +92,7 @@
                   <Separator layoutX="3.0" layoutY="65.0" prefHeight="17.0" prefWidth="509.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="addPublisherLayout" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <AnchorPane fx:id="addPublisherLayout" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label layoutX="197.0" layoutY="14.0" prefHeight="55.0" prefWidth="133.0" text="Add Publisher">
                      <font>
@@ -116,16 +116,6 @@
                      </font>
                   </Button>
                   <Label fx:id="errorLbl" layoutX="53.0" layoutY="266.0" prefHeight="48.0" prefWidth="258.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="placeOrderLayout" prefHeight="400.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="207.0" layoutY="14.0" prefHeight="53.0" prefWidth="118.0" text="Place Order" textAlignment="CENTER">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="14.0" layoutY="68.0" prefHeight="2.0" prefWidth="504.0" />
                </children>
             </AnchorPane>
          </children>
