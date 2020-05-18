@@ -2,14 +2,10 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,24 +19,6 @@ import model.BookController;
 import model.OperationResponse;
 
 public class AddBookViewController implements Initializable{
-	/*
-	 * No. years Available for publication year.
-	 */
-	private final int YEARS = 100;
-	/*
-	 * Max length for integer textfield
-	 */
-	private final int MAXINTLENGHT = 9;
-	/*
-	 * Regex that matches only digits.
-	 */
-	private String DIGRGX = "\\d*";
-	private String NDIGRGX = "[^\\d]*";
-	/*
-	 * Regex that matches only word characters.
-	 */
-	private String WORDRGX = "[\\s\\w]*";
-	private String NWORDRGX = "[^\\s\\w]";
 	
 	@FXML private TextField isbnTxt;
 	
@@ -127,28 +105,22 @@ public class AddBookViewController implements Initializable{
 	
 	@FXML
     void deleteSelectedAuthorListener(ActionEvent event) {
-		 deleteAuthorBtn.setOnAction(new EventHandler<ActionEvent>() {
-		        @Override
-		        public void handle(ActionEvent event) {
-		            final int selectedIdx = authorList.getSelectionModel().getSelectedIndex();
-		            if (selectedIdx != -1) {
-		                String itemToRemove = authorList.getSelectionModel().getSelectedItem();
+		 final int selectedIdx = authorList.getSelectionModel().getSelectedIndex();
+         if (selectedIdx != -1) {
+             String itemToRemove = authorList.getSelectionModel().getSelectedItem();
 
-		                final int newSelectedIdx =
-		                        (selectedIdx == authorList.getItems().size() - 1)
-		                                ? selectedIdx - 1
-		                                : selectedIdx;
+             final int newSelectedIdx =
+                     (selectedIdx == authorList.getItems().size() - 1)
+                             ? selectedIdx - 1
+                             : selectedIdx;
 
-		                authorList.getItems().remove(selectedIdx);
-		                authorList.getSelectionModel().select(newSelectedIdx);
-		                //removes the author for the array
-		                System.out.println("selectIdx: " + selectedIdx);
-		                System.out.println("item: " + itemToRemove);
-		                authors.remove(selectedIdx);
-
-		            }
-		        }
-		    });
+             authorList.getItems().remove(selectedIdx);
+             authorList.getSelectionModel().select(newSelectedIdx);
+             //removes the author for the array
+             System.out.println("selectIdx: " + selectedIdx);
+             System.out.println("item: " + itemToRemove);
+             authors.remove(selectedIdx);
+         }
     }
 	
 	private Book getBook() {
@@ -192,24 +164,24 @@ public class AddBookViewController implements Initializable{
 			authors = new ArrayList<>();
 			
 			//set validation input to text field
-			UtilControl.addValidation(noCopiesTxt, DIGRGX, NDIGRGX);
-			UtilControl.addValidation(thresholdTxt, DIGRGX, NDIGRGX);
-			UtilControl.addValidation(isbnTxt, DIGRGX, NDIGRGX);
-			UtilControl.addValidation(sellingPriceTxt, DIGRGX, NDIGRGX);
-			UtilControl.addValidation(authorTxt, WORDRGX, NWORDRGX);
+			UtilControl.addValidation(noCopiesTxt, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+			UtilControl.addValidation(thresholdTxt, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+			UtilControl.addValidation(isbnTxt, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+			UtilControl.addValidation(sellingPriceTxt, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+			UtilControl.addValidation(authorTxt, UtilControl.WORDRGX, UtilControl.NWORDRGX);
 			
 			//set limitation length of each text field
 			UtilControl.addTextLimiter(isbnTxt, bookController.getISBNMaxLength());
 			UtilControl.addTextLimiter(titleTxt, bookController.getTitleMaxLenth());
 			UtilControl.addTextLimiter(publishertxt, bookController.getPublisherMaxLength());
 			UtilControl.addTextLimiter(authorTxt, bookController.getAuthorMaxLength());
-			UtilControl.addTextLimiter(noCopiesTxt, MAXINTLENGHT);
-			UtilControl.addTextLimiter(thresholdTxt, MAXINTLENGHT);
-			UtilControl.addTextLimiter(sellingPriceTxt, MAXINTLENGHT);
+			UtilControl.addTextLimiter(noCopiesTxt, UtilControl.MAXINTLENGHT);
+			UtilControl.addTextLimiter(thresholdTxt, UtilControl.MAXINTLENGHT);
+			UtilControl.addTextLimiter(sellingPriceTxt, UtilControl.MAXINTLENGHT);
 			
 			//initiate combo boxes
-			initCatigories();
-			initYears();
+			UtilControl.initCatigories(categoryComBx);
+			UtilControl.initYears(yearComBx);
 		} else {
 			errorLabel.setText("Server is disconnected");
 		}
@@ -236,22 +208,5 @@ public class AddBookViewController implements Initializable{
 		emptyFieldsLbl.setText("");
 	}
 	
-	/*
-	 * Add categories to Category combo box.
-	 */
-	private void initCatigories() {
-		ObservableList<String> categories = FXCollections.observableArrayList(bookController.getCategories());
-		categoryComBx.setItems(categories);
-	}
-	
-	/*
-	 * Add years to year combo box.
-	 */
-	private void initYears() {
-		int curYear = Calendar.getInstance().get(Calendar.YEAR);
-		Integer[] years = new Integer[YEARS];
-		for(int i = 0; i < YEARS; i++)years[i] = curYear - i;
-		ObservableList<Integer> pYears = FXCollections.observableArrayList(years);
-		yearComBx.setItems(pYears);
-	}
+
 }

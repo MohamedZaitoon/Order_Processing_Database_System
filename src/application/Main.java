@@ -6,13 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import controllers.ModifyBookViewController;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/Reports.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModifyBook.fxml"));
+			Parent root = loader.load();
+			((ModifyBookViewController) loader.getController()).sendISBN("1236547891598");
+			
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.setMaximized(false);

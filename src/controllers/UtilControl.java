@@ -1,27 +1,46 @@
 package controllers;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.ResultSet;
+import java.util.Calendar;
 
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
-import com.sun.javafx.scene.control.skin.TableViewSkin;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
+import model.BookController;
 
 public class UtilControl {
 
+	/*
+	 * No. years Available for publication year.
+	 */
+	private final static int YEARS = 100;
+	/*
+	 * Max length for integer textfield
+	 */
+	public final static int MAXINTLENGHT = 9;
+	/*
+	 * Regex that matches only digits.
+	 */
+	public static final String DIGRGX = "\\d*";
+	public static final String NDIGRGX = "[^\\d]*";
+	/*
+	 * Regex that matches only word characters.
+	 */
+	public static final String WORDRGX = "[\\s\\w]*";
+	public static final String NWORDRGX = "[^\\s\\w]";
+	
+	
+	private static BookController bookController = new BookController();
 	/*
 	 * Set max length of input to Textfield
 	 */
@@ -118,5 +137,26 @@ public class UtilControl {
 		        });
 		    }
 		});
-	}   
+	}  
+	
+	/*
+	 * Add categories to Category combo box.
+	 */
+	public static void initCatigories(ComboBox<String> comBx) {
+		ObservableList<String> categories = FXCollections.observableArrayList(bookController.getCategories());
+		comBx.setItems(categories);
+	}
+	
+	/*
+	 * Add years to year combo box.
+	 */
+	public static void initYears(ComboBox<Integer> comBx) {
+		int curYear = Calendar.getInstance().get(Calendar.YEAR);
+		Integer[] years = new Integer[YEARS];
+		for(int i = 0; i < YEARS; i++)years[i] = curYear - i;
+		ObservableList<Integer> pYears = FXCollections.observableArrayList(years);
+		comBx.setItems(pYears);
+	}
+	
+	
 }

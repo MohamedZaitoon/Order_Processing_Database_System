@@ -1,9 +1,5 @@
 package controllers;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,16 +7,18 @@ import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.TableView;
 import model.OperationResponse;
-import model.OrderController;
 import model.ReportController;
 import model.ReportController.OperationType;
 
 public class ReportsViewController implements Initializable {
+	
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private TableView tableView;
 	@FXML
@@ -37,6 +35,7 @@ public class ReportsViewController implements Initializable {
 
 	private ReportController reportController;
 
+	@SuppressWarnings("rawtypes")
 	private ObservableList<ObservableList> data;
 
 	// Event Listener on Button[#top10BooksBtn].onAction

@@ -16,6 +16,7 @@ import model.OperationResponse;
 import model.OrderController;
 
 public class OrdersViewController implements Initializable {
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private TableView ordersTable;
 	@FXML
@@ -32,7 +33,8 @@ public class OrdersViewController implements Initializable {
 
 	private OrderController orderCont;
 
-	ObservableList<ObservableList> data;
+	@SuppressWarnings("rawtypes")
+	private ObservableList<ObservableList> data;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -52,6 +54,7 @@ public class OrdersViewController implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@FXML
 	void confirmListener(ActionEvent event) {
 		TableViewSelectionModel sm = ordersTable.getSelectionModel();

@@ -31,6 +31,7 @@ public class ReportController {
 			or.setErrorMessage(e.getMessage());
 			e.printStackTrace();
 		}
+		
 		return or;
 	}	
 	
