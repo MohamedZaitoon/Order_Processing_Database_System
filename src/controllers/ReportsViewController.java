@@ -18,6 +18,7 @@ import model.ReportController.OperationType;
 
 public class ReportsViewController implements Initializable {
 	
+	private String parent = "/view/ManagerPage.fxml";
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private TableView tableView;
@@ -81,6 +82,10 @@ public class ReportsViewController implements Initializable {
 		}
 
 	}
+    @FXML
+    void backListener(ActionEvent event) {
+    	UtilControl.changeScene(event, getClass().getResource(parent));
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

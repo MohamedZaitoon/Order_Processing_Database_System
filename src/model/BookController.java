@@ -111,7 +111,8 @@ public class BookController {
 			stmt = con.createStatement();
 			ResultSet q = stmt.executeQuery("DESC book category");
 			q.next();
-			String	cats =  q.getString(2).replaceAll("\\)", "").replaceAll("\\(", "").replace("enum","");
+			String	cats =  q.getString(2).replaceAll("\\)", "")
+							 .replaceAll("\\(", "").replace("enum",""); 
 			String[] arr = cats.split(",");
 			for(int i = 0; i < arr.length ; i++) {
 				arr[i] = arr[i].replaceAll("'", "");
@@ -127,7 +128,8 @@ public class BookController {
 		OperationResponse or = new OperationResponse();
 		try {
 			String query = "{CALL search_by_isbn(?)}";
-			CallableStatement stmt = (CallableStatement) con.prepareCall(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY );
+			CallableStatement stmt = (CallableStatement) con.prepareCall
+					(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY );
 			
 			stmt.setString(1, isbn);
 			ResultSet rs = stmt.executeQuery();

@@ -13,13 +13,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import model.Book;
 import model.BookController;
 import model.OperationResponse;
 
 public class AddBookViewController implements Initializable{
 	
+	private String parent = "/view/ManagerPage.fxml";
 	@FXML private TextField isbnTxt;
 	
 	@FXML private TextField titleTxt;
@@ -73,7 +73,7 @@ public class AddBookViewController implements Initializable{
 	 * Adding book to database
 	 */
 	@FXML
-	public void addBookListener(MouseEvent event) {
+	public void addBookListener(Event event) {
 		if(!bookController.isConnected()) {
 			errorLabel.setText("Server is disconnected");
 			return;
@@ -122,6 +122,11 @@ public class AddBookViewController implements Initializable{
              authors.remove(selectedIdx);
          }
     }
+	
+	 @FXML
+	    void backListener(ActionEvent event) {
+	    		UtilControl.changeScene(event, getClass().getResource(parent));
+	    }
 	
 	private Book getBook() {
 		Book newBook;

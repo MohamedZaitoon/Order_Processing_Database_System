@@ -13,10 +13,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModifyBook.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ManagerPage.fxml"));
 			Parent root = loader.load();
-			((ModifyBookViewController) loader.getController()).sendISBN("1236547891598");
-			
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.setMaximized(false);

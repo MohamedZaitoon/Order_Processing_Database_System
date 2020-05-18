@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.util.Calendar;
 
@@ -10,9 +12,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
@@ -158,5 +166,22 @@ public class UtilControl {
 		comBx.setItems(pYears);
 	}
 	
+	
+	
+	public static final void changeScene(Event event, URL url) {
+    	try {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage)  node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(url);
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.close();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
 	
 }

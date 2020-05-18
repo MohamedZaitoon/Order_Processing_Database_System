@@ -17,6 +17,8 @@ import model.BookController;
 import model.OperationResponse;
 
 public class ModifyBookViewController implements Initializable {
+
+	private String parent = "/view/ManagerPage.fxml";
 	@FXML
 	private TextField isbnTxt;
 	@FXML
@@ -59,7 +61,7 @@ public class ModifyBookViewController implements Initializable {
 	private ArrayList<String> addedAuthors;
 
 	public void sendISBN(String _ISBN) {
-			ISBN = _ISBN;
+		ISBN = _ISBN;
 	}
 
 	/*
@@ -70,50 +72,49 @@ public class ModifyBookViewController implements Initializable {
 	@FXML
 	public void cancelListener(ActionEvent event) {
 		clearFields();
-		changeScene();
-	}
-
-	
-	private void changeScene() {
-		// TODO: back to the main scene
-		
+		UtilControl.changeScene(event, getClass().getResource(parent));
 	}
 
 	@FXML
 	public void saveListener(ActionEvent event) {
-		if(!bookController.isConnected()) {
+		if (!bookController.isConnected()) {
 			errorLbl.setText("Server is disconnected");
 			return;
 		}
-		
+
 		Book book = getBook();
-		if(book == null )
+		if (book == null)
 			return;
-		if(authors.isEmpty()) {
+		if (authors.isEmpty()) {
 			errorLbl.setText("Authors' list is empty");
 			return;
 		}
-		
+
 		OperationResponse or = bookController.updateBook(book);
-		
-		if(!or.isExecutedSuccessfuly()) {
+
+		if (!or.isExecutedSuccessfuly()) {
 			errorLbl.setText(or.getErrorMessage());
 			return;
 		}
-		
-		or = bookController.deleteAuthors(book.getISBN(), deletedAuthors);
-		if(!or.isExecutedSuccessfuly()) {
-			errorLbl.setText(or.getErrorMessage());
-			return;
+
+		if (!deletedAuthors.isEmpty()) {
+			or = bookController.deleteAuthors(book.getISBN(), deletedAuthors);
+			if (!or.isExecutedSuccessfuly()) {
+				errorLbl.setText(or.getErrorMessage());
+				return;
+			}
 		}
-		
-		or = bookController.addAuthors(book.getISBN(), addedAuthors);
-		if(!or.isExecutedSuccessfuly()) {
-			errorLbl.setText(or.getErrorMessage());
-			return;
-		}
-		
+
+		if (!addedAuthors.isEmpty()) {
+			or = bookController.addAuthors(book.getISBN(), addedAuthors);
+			if (!or.isExecutedSuccessfuly()) {
+				errorLbl.setText(or.getErrorMessage());
+				return;
+			}
+		}	
+
 		clearFields();
+		UtilControl.changeScene(event, getClass().getResource(parent));
 	}
 
 	@FXML
@@ -193,7 +194,7 @@ public class ModifyBookViewController implements Initializable {
 			return;
 		}
 		setDisableFields(false);
-		
+
 		OperationResponse or = bookController.searchForBook(ISBN);
 		if (!or.isExecutedSuccessfuly()) {
 			errorLbl.setText(or.getErrorMessage());
@@ -221,8 +222,7 @@ public class ModifyBookViewController implements Initializable {
 		authorList.getItems().clear();
 		authorList.getItems().addAll(authors);
 	}
-	
-	
+
 	private Book getBook() {
 		Book newBook;
 		String ISBN = isbnTxt.getText().trim();
@@ -233,31 +233,27 @@ public class ModifyBookViewController implements Initializable {
 		String _threshold = thresholdTxt.getText().trim();
 		String _price = sellingPriceTxt.getText().trim();
 		Integer year = yearComBx.getValue();
-		
-		
-		if(ISBN.length() != bookController.getISBNMaxLength()) {
+
+		if (ISBN.length() != bookController.getISBNMaxLength()) {
 			errorLbl.setText("ISBN must be at 13 digits");
 			return null;
 		}
-		
-		if(ISBN.isEmpty() || title.isEmpty()|| publisher.isEmpty()
-				|| category == null || _noCopies.isEmpty() || _threshold.isEmpty()
-				|| _price.isEmpty()|| year == null) {
+
+		if (ISBN.isEmpty() || title.isEmpty() || publisher.isEmpty() || category == null || _noCopies.isEmpty()
+				|| _threshold.isEmpty() || _price.isEmpty() || year == null) {
 			errorLbl.setText("Some fields are empty or not selected");
 			return null;
 		}
-		
-		Integer noCopies =  Integer.parseInt(noCopiesTxt.getText().trim());
+
+		Integer noCopies = Integer.parseInt(noCopiesTxt.getText().trim());
 		Integer threshold = Integer.parseInt(_threshold);
-		Integer sellingPrice= Integer.parseInt(_price);
-		
-		newBook = new Book(ISBN,title,category, sellingPrice,noCopies,threshold,publisher, 
-				year+"-1-1" );
-		
+		Integer sellingPrice = Integer.parseInt(_price);
+
+		newBook = new Book(ISBN, title, category, sellingPrice, noCopies, threshold, publisher, year + "-1-1");
+
 		return newBook;
 	}
 
-	
 	/*
 	 * Reset all controllers in scene.
 	 */
@@ -277,7 +273,7 @@ public class ModifyBookViewController implements Initializable {
 
 		errorLbl.setText("");
 	}
-	
+
 	private void setDisableFields(boolean bool) {
 		isbnTxt.setDisable(bool);
 		titleTxt.setDisable(bool);
@@ -292,5 +288,5 @@ public class ModifyBookViewController implements Initializable {
 		addToAuthBtn.setDisable(bool);
 		deleteAuthorBtn.setDisable(bool);
 	}
-	
+
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="335.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsViewController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsViewController">
    <top>
       <Separator prefHeight="13.0" prefWidth="583.0" BorderPane.alignment="CENTER" />
    </top>
@@ -18,11 +18,18 @@
             <Button fx:id="top10BooksBtn" mnemonicParsing="false" onAction="#showTop10BooksListener" prefHeight="69.0" prefWidth="171.0" text="Show Top 10 Books" />
             <Button fx:id="top5UserBtn" mnemonicParsing="false" onAction="#showTop5UserListener" prefHeight="69.0" prefWidth="170.0" text="Show Top 5 Users" />
             <Button fx:id="totalSalesBtn" mnemonicParsing="false" onAction="#showTotalSalesListener" prefHeight="69.0" prefWidth="172.0" text="Show Total Sales" />
-            <Label fx:id="totalSales" prefHeight="124.0" prefWidth="173.0" />
-            <Label fx:id="errorLabel" prefHeight="83.0" prefWidth="172.0" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="totalSales" prefHeight="100.0" prefWidth="173.0" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="errorLabel" prefHeight="45.0" prefWidth="172.0" />
+            <Button mnemonicParsing="false" onAction="#backListener" prefHeight="47.0" prefWidth="169.0" text="Back">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
          <padding>
-            <Insets left="10.0" top="50.0" />
+            <Insets left="10.0" top="25.0" />
          </padding>
          <BorderPane.margin>
             <Insets />
