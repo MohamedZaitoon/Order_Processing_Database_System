@@ -29,7 +29,7 @@ import utils.User;
 public class Place_orders_controller implements Initializable {
 
     @FXML
-    private AnchorPane addBt;
+    private Button addBt;
 
     @FXML
     private TextField isbn_feild;
@@ -43,7 +43,7 @@ public class Place_orders_controller implements Initializable {
     @FXML
     private Label error;
 
-private User user;
+    private User user;
     
     private final String HOME_URL = "../fxml/Home.fxml";
     
@@ -75,7 +75,7 @@ private User user;
 		if (isbn.isEmpty() || quantity.isEmpty())
 			StatusUtil.setLblError(error, Color.TOMATO, "Book ISBN or quantity not entered.");
 		else {
-			String sql = "SELECT * FROM orders WHERE ISBN = ?";
+			String sql = "SELECT * FROM book WHERE ISBN = ?";
 	        try {
 	            preparedStatement = connection.prepareStatement(sql);
 	            preparedStatement.setString(1, isbn);
@@ -83,7 +83,7 @@ private User user;
 	            if (!resultSet.next()) {
 	            	StatusUtil.setLblError(error, Color.TOMATO, "Book is not exist!");
 	            } else {
-	            	sql = "{ call place_oreder (?, ?) }";
+	            	sql = "{ call place_order (?, ?) }";
 	            	callableStatement = connection.prepareCall(sql);
 	            	callableStatement.setString(1, isbn);
 	            	callableStatement.setInt(2, Integer.parseInt(quantity));
@@ -103,8 +103,8 @@ private User user;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
-            HomeController controller = new HomeController();
-            controller.setUser(user);
+//            HomeController controller = new HomeController();
+//            controller.setUser(user);
             stage.close();
             stage.setScene(scene);
             stage.setResizable(false);

@@ -19,8 +19,8 @@
          </font>
       </Label>
       <TextField fx:id="uesr_name_feild" layoutX="100.0" layoutY="180.0" prefHeight="31.0" prefWidth="262.0" />
-      <Button fx:id="promoteBt" layoutX="478.0" layoutY="301.0" mnemonicParsing="false" style="-fx-background-color: #dcf7e8;" text="Promote" textFill="#076b1b" />
+      <Button fx:id="promoteBt" layoutX="478.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Promote" textFill="#076b1b" />
       <Label fx:id="error" layoutX="85.0" layoutY="303.0" prefHeight="27.0" prefWidth="351.0" textAlignment="CENTER" />
-      <Button fx:id="homeBt" layoutX="487.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #dcf7e8;" text="Home" textFill="#076b1b" />
+      <Button fx:id="homeBt" layoutX="487.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Home" textFill="#076b1b" />
    </children>
 </AnchorPane>

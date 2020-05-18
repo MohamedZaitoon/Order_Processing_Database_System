@@ -99,8 +99,8 @@ public class Promote_controller implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
-            HomeController controller = new HomeController();
-            controller.setUser(user);
+//            HomeController controller = new HomeController();
+//            controller.setUser(user);
             stage.close();
             stage.setScene(scene);
             stage.setResizable(false);

@@ -12,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../fxml/profile.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../fxml/promote.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.setMaximized(false);
