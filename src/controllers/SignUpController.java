@@ -73,8 +73,6 @@ public class SignUpController implements Initializable {
     private ResultSet resultSet = null;
     private User user;
     
-    private final String HOME_URL = "../fxml/Home.fxml";
-    
     public SignUpController() {
     	user = new User();
     	connection = ConnectionUtil.connectDatabase();
@@ -83,7 +81,7 @@ public class SignUpController implements Initializable {
     @FXML
     public void handleButtonAction(MouseEvent event) {
         if (event.getSource().equals(btnContinue) && signUp().equals(Status.SUCCESS)) {
-        	changeScene(event, HOME_URL);
+        	changeScene(event, StatusUtil.HOME_URL);
         } else if (event.getSource().equals(btnResetAll)) {
         	resetAll();
         }
@@ -216,24 +214,14 @@ public class SignUpController implements Initializable {
         	preparedStatement.setString(4, user.getUsername());
         	preparedStatement.setString(5, user.getBirthdate().toString());
         	preparedStatement.setString(6, StatusUtil.CUSTOMER);
-        	preparedStatement.setString(7, mapGender(user.getGender()));
+        	preparedStatement.setString(7, User.mapGender(user.getGender()));
         	preparedStatement.setString(8, user.getPassword());
         	preparedStatement.executeUpdate();
         	return Status.SUCCESS;
-    } catch (SQLException ex) {
+    	} catch (SQLException ex) {
             System.err.println(ex.getMessage());
             return Status.EXCEPTION;
         }
-    }
-    
-    private String mapGender(String gender) {
-    	String res = "";
-    	switch (gender) {
-    		case "Male":    return res = "M";
-    		case "Female" : return res = "F";
-    		case "Other"  : return res = "U";
-    	}
-    	return res;
     }
     
 	@Override

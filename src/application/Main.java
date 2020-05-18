@@ -6,13 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.StatusUtil;
 
 public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource(StatusUtil.HOME_URL));
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.setMaximized(false);

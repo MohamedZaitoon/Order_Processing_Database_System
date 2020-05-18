@@ -45,15 +45,12 @@ public class LoginController implements Initializable {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     
-    private final String HOME_URL = "../fxml/Home.fxml";
-    private final String SIGNUP_URL = "../fxml/SignUp.fxml";
-    
     @FXML
     public void handleButtonAction(MouseEvent event) {
         if (event.getSource() == btnSignin && logIn().equals(Status.SUCCESS)) {
-        	changeScene(event, HOME_URL);
+        	changeScene(event, StatusUtil.HOME_URL);
         } else if (event.getSource() == btnSignup) {
-        	changeScene(event, SIGNUP_URL);
+        	changeScene(event, StatusUtil.SIGNUP_URL);
         }
     }
     
@@ -121,7 +118,7 @@ public class LoginController implements Initializable {
     	try {
     		User user = new User();
     		user.setUserInfo(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-        			rs.getString(6), rs.getString(7), rs.getString(8));
+        			rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
     		return user;
     	} catch (SQLException ex) {
             System.err.println(ex.getMessage());

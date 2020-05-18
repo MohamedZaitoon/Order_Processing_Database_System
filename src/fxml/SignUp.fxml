@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
    <children>
-      <Pane prefHeight="503.0" prefWidth="110.0" style="-fx-background-color: #222831;" />
+      <Pane layoutY="-3.0" prefHeight="509.0" prefWidth="110.0" style="-fx-background-color: #222831;" />
       <JFXTextField fx:id="txtFirstname" focusColor="#48a5ea" labelFloat="true" layoutX="133.0" layoutY="92.0" prefHeight="25.0" prefWidth="217.0" promptText="First Name" />
       <JFXTextField fx:id="txtEmail" focusColor="#48a5ea" labelFloat="true" layoutX="133.0" layoutY="162.0" prefHeight="25.0" prefWidth="217.0" promptText="Email" />
       <JFXTextField fx:id="txtLastname" focusColor="#48a5ea" labelFloat="true" layoutX="418.0" layoutY="92.0" prefHeight="25.0" prefWidth="217.0" promptText="Last Name" />

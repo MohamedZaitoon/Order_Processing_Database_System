@@ -11,12 +11,18 @@ public class User {
 	private String username;
 	 
 	private String birthdate;
+	
+	private String user_role;
 
     private String gender;
     
     private String password;
     
-    public String getEmail () {
+    public final static String MANAGER = "Manager";
+    
+    public final static String CUSTOMER = "Customer";
+    
+    public String getEmail() {
         return email;
     }
 
@@ -24,23 +30,23 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstname () {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname (String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
     
-    public String getLastname () {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname (String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-    public String getUsername () {
+    public String getUsername() {
         return username;
     }
 
@@ -48,39 +54,58 @@ public class User {
         this.username = username;
     }
     
-	public String getBirthdate () {
+	public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate (String birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
+    
+    public String getUserRole() {
+        return user_role;
+    }
 
-    public String getGender () {
+    public void setUserRole(String user_role) {
+    	this.user_role = user_role;
+    }
+
+    public String getGender() {
         return gender;
     }
 
-    public void setGender (String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
     
-    public String getPassword () {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword (String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     
     public void setUserInfo(String email, String firstname,
     		String lastname, String username, String birthdate,
-    		String gender, String password) {
+    		String user_role, String gender, String password) {
     	this.email = email;
     	this.firstname = firstname;
     	this.lastname = lastname;
     	this.username = username;
     	this.birthdate = birthdate;
+    	this.user_role = user_role;
     	this.gender = gender;
     	this.password = password;	
+    }
+    
+    public static String mapGender(String gender) {
+    	String res = "";
+    	switch (gender) {
+    		case "Male":    return res = "M";
+    		case "Female" : return res = "F";
+    		case "Other"  : return res = "U";
+    	}
+    	return res;
     }
 }
