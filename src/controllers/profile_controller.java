@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 import utils.User;
@@ -38,10 +38,14 @@ public class profile_controller implements Initializable {
     @FXML
     private Button editBt;
 
+    @FXML
+    private Button homeBt;
+
     
     private User user; 
     
-    private final String EDIT_PROFILE_URL = "../fxml/edit_profile.fxml";
+    private final String EDIT_PROFILE_URL = "../fxml/edit_profile.fxml",
+    					 HOME_URL = "../fxml/Home.fxml";
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,17 +57,19 @@ public class profile_controller implements Initializable {
 		 */
 	}
 
-    public void profile_controller() {
+    public profile_controller() {
     }
 
     @FXML
-    public void handleButtonAction(MouseEvent event) {
+    private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == editBt) {
         	changeScene(event, EDIT_PROFILE_URL);
+        } else if (event.getSource() == homeBt) {
+        	changeScene(event, HOME_URL);
         }
     }
 
-    private void changeScene(MouseEvent event, String path) {
+    private void changeScene(ActionEvent event, String path) {
     	try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -74,6 +80,8 @@ public class profile_controller implements Initializable {
             if (event.getSource() == editBt) {
             	Edit_profile_controller controller = new Edit_profile_controller();
             	controller.setUser(user);
+            } else if (event.getSource() == homeBt) {
+            	////h
             }
             stage.close();
             stage.setScene(scene);

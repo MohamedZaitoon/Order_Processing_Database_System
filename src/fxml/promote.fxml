@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebf1f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Promote_controller">
+   <children>
+      <Label layoutX="245.0" layoutY="14.0" text="Promote">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="140.0" text="User Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="uesr_name_feild" layoutX="100.0" layoutY="180.0" prefHeight="31.0" prefWidth="262.0" />
+      <Button fx:id="promoteBt" layoutX="478.0" layoutY="301.0" mnemonicParsing="false" style="-fx-background-color: #dcf7e8;" text="Promote" textFill="#076b1b" />
+      <Label fx:id="error" layoutX="85.0" layoutY="303.0" prefHeight="27.0" prefWidth="351.0" textAlignment="CENTER" />
+      <Button fx:id="homeBt" layoutX="487.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #dcf7e8;" text="Home" textFill="#076b1b" />
+   </children>
+</AnchorPane>
