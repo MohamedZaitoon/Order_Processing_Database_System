@@ -452,7 +452,7 @@ public class HomeController implements Initializable,DelegateUser {
 	public void sendUserInfo(User user) {
 		if (user != null) {
 			this.user = user;
-			if (this.user.getUserRole().equals( User.MANAGER)) {
+			if (user.getUserRole().equals( User.MANAGER)) {
 				btnManage.setDisable(false);
 				btnManage.setVisible(true);
 				btnEdit.setDisable(false);

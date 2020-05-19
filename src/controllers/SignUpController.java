@@ -170,6 +170,7 @@ public class SignUpController implements Initializable {
     	user.setPassword(txtPassword.getText());
     	user.setGender(cobxGender.getValue());
     	user.setBirthdate(dpkbirthdate.getValue().toString());
+    	user.setUserRole(User.CUSTOMER);
     }
     
     private Status checkEmailExistence(Status prevStatus,String email) {
