@@ -143,8 +143,9 @@ public class Edit_profile_controller implements Initializable {
 	            	callableStatement.setString(8, resultSet.getString(9));
 	            	callableStatement.execute();
 	                StatusUtil.setLblError(error, Color.GREEN, "Update completed");
+	       
 	                user.setUserInfo(user.getEmail(), firstName, lastName, userName,
-	                		birthDate, gender, user.getPassword());
+	                		birthDate,user.getUserRole() ,gender, user.getPassword());
 	            }
 	        } catch (SQLException ex) {
 	            System.err.println(ex.getMessage());

@@ -10,6 +10,10 @@ public class StatusUtil {
 	public static String CUSTOMER = "Customer";
 	public static String MANAGER = "Manager";
 	
+	public static final String HOME_URL = "../fxml/Home.fxml";
+	public static final String SIGNUP_URL = "../fxml/SignUp.fxml";
+	public static final String LOGIN_URL = "../fxml/Login.fxml";
+	
 	public static void notifyConnectionStatus(Connection connection, Label label) {
     	if (connection == null) {
             label.setTextFill(Color.TOMATO);
