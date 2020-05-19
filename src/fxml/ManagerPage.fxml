@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerPageViewController">
+<BorderPane prefHeight="650.0" prefWidth="1024.0" stylesheets="@../styling/fullpackstyling.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerPageViewController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="160.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="160.0" spacing="5.0" style="-fx-background-color: #222831;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#showAddPublisherLayout" prefHeight="59.0" prefWidth="160.0" text="Add Publisher">
+            <JFXButton onAction="#showAddPublisherLayout" prefHeight="62.0" prefWidth="166.0" style="-fx-background-color: FAFAFA;" text="Add Publisher">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#confirmOrderListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Confirm Orders">
                <font>
                   <Font size="18.0" />
                </font>
-            </Button>
-            <Button fx:id="confirmOrderBtn" mnemonicParsing="false" onAction="#confirmOrderListener" prefHeight="59.0" prefWidth="160.0" text="Confirm Orders">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="addBookBtn" mnemonicParsing="false" onAction="#addBookListener" prefHeight="59.0" prefWidth="160.0" text="Add Book">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#addBookListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Add Book">
                <font>
                   <Font size="20.0" />
                </font>
-            </Button>
-            <Button fx:id="editBookBtn" mnemonicParsing="false" onAction="#editBookListener" prefHeight="59.0" prefWidth="160.0" text="Edit Book">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#editBookListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Edit Book">
                <font>
                   <Font size="20.0" />
                </font>
-            </Button>
-            <Button fx:id="reportsBtn" mnemonicParsing="false" onAction="#showReportsListener" prefHeight="59.0" prefWidth="160.0" text="Reports">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#showReportsListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Reports">
                <font>
                   <Font size="20.0" />
                </font>
-            </Button>
-            <Button fx:id="promoteBtn" mnemonicParsing="false" onAction="#promoteListener" prefHeight="59.0" prefWidth="160.0" text="Promote">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#promoteListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Promote">
                <font>
                   <Font size="20.0" />
                </font>
-            </Button>
-            <Button fx:id="placeOrderBtn" mnemonicParsing="false" onAction="#placeOrderListenr" prefHeight="59.0" prefWidth="160.0" text="Place Order">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#placeOrderListenr" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Place Order">
                <font>
                   <Font size="20.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#backListener" prefHeight="59.0" prefWidth="160.0" text="Back">
+            </JFXButton>
+            <JFXButton mnemonicParsing="false" onAction="#backListener" prefHeight="59.0" prefWidth="160.0" style="-fx-background-color: FAFAFA;" text="Back">
                <font>
                   <Font size="20.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" top="100.0" />
                </VBox.margin>
-            </Button>
+            </JFXButton>
          </children>
          <padding>
             <Insets left="5.0" right="5.0" top="30.0" />
@@ -61,6 +61,9 @@
       </VBox>
    </left>
    <center>
-      <StackPane fx:id="mainView" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="mainView" prefHeight="150.0" prefWidth="200.0" stylesheets="@../styling/fullpackstyling.css" BorderPane.alignment="CENTER" />
    </center>
+   <top>
+      <AnchorPane prefHeight="26.0" prefWidth="1024.0" style="-fx-background-color: #30475e;" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

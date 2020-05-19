@@ -16,11 +16,11 @@ public class DatabaseConnection {
 	/*
 	 * Database user
 	 */
-	private final static String user = "scott";
+	private final static String user = "java_user";
 	/*
 	 * Database user's password
 	 */
-	private final static String password = "tiger";
+	private final static String password = "java";
 	
 	private DatabaseConnection() {}
 	

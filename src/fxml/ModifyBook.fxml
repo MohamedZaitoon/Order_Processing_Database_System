@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -11,19 +15,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyBookViewController">
+<BorderPane stylesheets="@../styling/fullpackstyling.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyBookViewController">
    <left>
       <VBox prefHeight="400.0" prefWidth="296.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="isbnTxt" promptText="ISBN" />
-            <TextField fx:id="titleTxt" promptText="Title" />
-            <TextField fx:id="noCopiesTxt" promptText="Number Of Copies" />
-            <TextField fx:id="thresholdTxt" promptText="Threshold" />
-            <TextField fx:id="sellingPriceTxt" promptText="Selling Price" />
-            <TextField fx:id="publishertxt" promptText="Publisher" />
-            <ComboBox fx:id="categoryComBx" prefHeight="25.0" prefWidth="277.0" promptText="Category" />
-            <ComboBox fx:id="yearComBx" prefHeight="25.0" prefWidth="283.0" promptText="Year" />
-            <Button mnemonicParsing="false" onAction="#resetListener" prefHeight="33.0" prefWidth="70.0" text="Reset" />
+            <JFXTextField fx:id="isbnTxt" promptText="ISBN" />
+            <JFXTextField fx:id="titleTxt" promptText="Title" />
+            <JFXTextField fx:id="noCopiesTxt" promptText="Number Of Copies" />
+            <JFXTextField fx:id="thresholdTxt" promptText="Threshold" />
+            <JFXTextField fx:id="sellingPriceTxt" promptText="Selling Price" />
+            <JFXTextField fx:id="publishertxt" promptText="Publisher" />
+            <JFXComboBox fx:id="categoryComBx" prefHeight="25.0" prefWidth="277.0" promptText="Category" />
+            <JFXComboBox fx:id="yearComBx" prefHeight="25.0" prefWidth="283.0" promptText="Year" />
+            <JFXButton style="-fx-background-color: FAFAFA;;" mnemonicParsing="false" onAction="#resetListener" prefHeight="33.0" prefWidth="70.0" text="Reset" />
             <Label fx:id="errorLbl" prefHeight="43.0" prefWidth="274.0" textFill="#f54141" />
          </children>
          <padding>
@@ -34,12 +38,12 @@
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="308.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="authorTxt" onAction="#addAuthorListener" promptText="Author" />
-            <ListView fx:id="authorList" prefHeight="200.0" prefWidth="200.0" />
+            <JFXTextField fx:id="authorTxt" onAction="#addAuthorListener" promptText="Author" />
+            <JFXListView fx:id="authorList" prefHeight="200.0" prefWidth="200.0" />
             <HBox prefHeight="35.0" prefWidth="144.0" spacing="5.0">
                <children>
-                  <Button fx:id="addToAuthBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#addAuthorListener" prefHeight="23.0" prefWidth="103.0" text="Add To Authors" />
-                  <Button fx:id="deleteAuthorBtn" mnemonicParsing="false" onAction="#deleteSelectedAuthorListener" prefHeight="23.0" prefWidth="76.0" text="Delete" />
+                  <JFXButton style="-fx-background-color: FAFAFA;;" fx:id="addToAuthBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#addAuthorListener" prefHeight="23.0" prefWidth="103.0" text="Add To Authors" />
+                  <JFXButton style="-fx-background-color: FAFAFA;;" fx:id="deleteAuthorBtn" mnemonicParsing="false" onAction="#deleteSelectedAuthorListener" prefHeight="23.0" prefWidth="76.0" text="Delete" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -48,8 +52,8 @@
             <Separator prefHeight="8.0" prefWidth="276.0" />
             <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="288.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#saveListener" prefHeight="33.0" prefWidth="111.0" text="Save" />
-                  <Button mnemonicParsing="false" onAction="#cancelListener" prefHeight="33.0" prefWidth="111.0" text="Cancel" />
+                  <JFXButton style="-fx-background-color: FAFAFA;;" mnemonicParsing="false" onAction="#saveListener" prefHeight="33.0" prefWidth="111.0" text="Save" />
+                  <JFXButton style="-fx-background-color: FAFAFA;;" mnemonicParsing="false" onAction="#cancelListener" prefHeight="33.0" prefWidth="111.0" text="Cancel" />
                </children>
             </HBox>
          </children>

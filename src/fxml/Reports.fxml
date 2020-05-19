@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsViewController">
+<BorderPane stylesheets="@../styling/fullpackstyling.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsViewController">
    <top>
       <Separator prefHeight="13.0" prefWidth="583.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <VBox prefHeight="487.0" prefWidth="187.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="top10BooksBtn" mnemonicParsing="false" onAction="#showTop10BooksListener" prefHeight="69.0" prefWidth="171.0" text="Show Top 10 Books" />
-            <Button fx:id="top5UserBtn" mnemonicParsing="false" onAction="#showTop5UserListener" prefHeight="69.0" prefWidth="170.0" text="Show Top 5 Users" />
-            <Button fx:id="totalSalesBtn" mnemonicParsing="false" onAction="#showTotalSalesListener" prefHeight="69.0" prefWidth="172.0" text="Show Total Sales" />
+            <JFXButton fx:id="top10BooksBtn" mnemonicParsing="false" onAction="#showTop10BooksListener" prefHeight="69.0" prefWidth="171.0" style="-fx-background-color: FAFAFA;;" text="Show Top 10 Books" />
+            <JFXButton fx:id="top5UserBtn" mnemonicParsing="false" onAction="#showTop5UserListener" prefHeight="69.0" prefWidth="170.0" style="-fx-background-color: FAFAFA;;" text="Show Top 5 Users" />
+            <JFXButton fx:id="totalSalesBtn" mnemonicParsing="false" onAction="#showTotalSalesListener" prefHeight="69.0" prefWidth="172.0" style="-fx-background-color: FAFAFA;;" text="Show Total Sales" />
             <Separator prefWidth="200.0" />
             <Label fx:id="totalSales" prefHeight="100.0" prefWidth="173.0" />
             <Separator prefWidth="200.0" />
