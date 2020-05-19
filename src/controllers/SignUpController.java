@@ -96,8 +96,8 @@ public class SignUpController implements Initializable {
             Scene scene = new Scene(root);
             
             if (event.getSource() == btnContinue) {
-            	HomeController controller = new HomeController();
-            	controller.setUser(user);
+            	HomeController controller = fxmlLoader.getController();
+            	controller.sendUserInfo(user);
             }
             
             stage.close();

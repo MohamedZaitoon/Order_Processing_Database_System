@@ -67,7 +67,7 @@
          </columns>
       </TableView>
       <JFXComboBox fx:id="comboCategory" layoutX="622.0" layoutY="140.0" prefHeight="25.0" prefWidth="110.0" />
-      <JFXButton fx:id="btnRemCart" buttonType="RAISED" layoutX="282.0" layoutY="394.0" prefHeight="25.0" prefWidth="125.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Remove from Cart" />
+      <JFXButton fx:id="btnRemCart" buttonType="RAISED" layoutX="282.0" layoutY="394.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="125.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Remove from Cart" />
       <JFXTextField fx:id="txtCreditNumber" focusColor="#2196f3" labelFloat="true" layoutX="143.0" layoutY="428.0" prefHeight="25.0" prefWidth="260.0" promptText="Credit Number" />
       <JFXButton fx:id="btnSearch" buttonType="RAISED" layoutX="930.0" layoutY="142.0" onMousePressed="#handleButtonAction" prefWidth="75.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Search">
          <font>
@@ -76,7 +76,7 @@
       </JFXButton>
       <JFXDatePicker fx:id="dbkExpirationData" layoutX="143.0" layoutY="488.0" prefHeight="28.0" prefWidth="260.0" promptText="Expiration Date" />
       <JFXTextField fx:id="txtCVV" focusColor="#2196f3" labelFloat="true" layoutX="143.0" layoutY="548.0" prefHeight="25.0" prefWidth="60.0" promptText="CVV" />
-      <JFXButton fx:id="btnPay" buttonType="RAISED" layoutX="225.0" layoutY="549.0" prefHeight="25.0" prefWidth="182.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Pay" />
+      <JFXButton fx:id="btnPay" buttonType="RAISED" layoutX="225.0" layoutY="549.0" onMousePressed="#handleButtonAction" prefHeight="25.0" prefWidth="182.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Pay" />
       <Label fx:id="lblCreditNumber" alignment="CENTER" layoutX="143.0" layoutY="456.0" prefHeight="23.0" prefWidth="260.0" textFill="#ff6354">
          <font>
             <Font name="Segoe UI" size="10.0" />

@@ -13,8 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
-			Parent root = FXMLLoader.load(getClass().getResource(StatusUtil.HOME_URL));
+			Parent root = FXMLLoader.load(getClass().getResource(StatusUtil.LOGIN_URL));
 			Scene scene = new Scene(root);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.setMaximized(false);
