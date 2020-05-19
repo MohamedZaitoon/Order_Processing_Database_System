@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,21 +10,13 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import model.DatabaseConnection;
-import utils.ConnectionUtil;
 import utils.StatusUtil;
-import utils.User;
 
 public class Place_orders_controller implements Initializable {
 
@@ -44,9 +35,6 @@ public class Place_orders_controller implements Initializable {
     @FXML
     private Label error;
 
-    private User user;
-    
-    private final String HOME_URL = "../fxml/ManagerPage.fxml";
     
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
@@ -60,14 +48,20 @@ public class Place_orders_controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		StatusUtil.notifyConnectionStatus(connection, error);
+		
+		
+		UtilControl.addValidation(isbn_feild, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+		UtilControl.addValidation(quantity_feild, UtilControl.DIGRGX, UtilControl.NDIGRGX);
+		
+		// set limitation length of each text field
+		UtilControl.addTextLimiter(isbn_feild, 13);
+		UtilControl.addTextLimiter(quantity_feild, UtilControl.MAXINTLENGHT);
 	}
 
 	@FXML
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == addBt) {
         	add_order();
-        } else if (event.getSource() == homeBt) {
-        	changeScene(event, HOME_URL);
         }
     }
 
@@ -97,24 +91,5 @@ public class Place_orders_controller implements Initializable {
 		}
 	}
 
-	private void changeScene(ActionEvent event, String path) {
-    	try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.close();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 }

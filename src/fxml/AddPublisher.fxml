@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addPublisherLayout" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddPublisherViewController">
+   <children>
+      <Label layoutX="197.0" layoutY="14.0" prefHeight="55.0" prefWidth="133.0" text="Add Publisher">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="9.0" layoutY="61.0" prefHeight="17.0" prefWidth="509.0" />
+      <VBox layoutX="45.0" layoutY="78.0" spacing="10.0">
+         <children>
+            <TextField fx:id="publisherNameTxt" prefHeight="51.0" prefWidth="412.0" promptText="Publisher Name" />
+            <TextField fx:id="addressTxt" prefHeight="51.0" prefWidth="412.0" promptText="Address" />
+            <TextField fx:id="phoneTxt" prefHeight="51.0" prefWidth="412.0" promptText="Phone" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <Button layoutX="330.0" layoutY="267.0" mnemonicParsing="false" onAction="#addPublisherListener" prefHeight="31.0" prefWidth="118.0" text="Add">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Label fx:id="errorLbl" layoutX="53.0" layoutY="266.0" prefHeight="48.0" prefWidth="258.0" />
+   </children>
+</AnchorPane>

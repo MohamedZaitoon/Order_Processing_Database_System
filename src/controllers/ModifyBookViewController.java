@@ -35,12 +35,7 @@ public class ModifyBookViewController implements Initializable {
 	private ComboBox<String> categoryComBx;
 	@FXML
 	private ComboBox<Integer> yearComBx;
-	@FXML
-	private Button cancelBtn;
-	@FXML
-	private Button saveBtn;
-	@FXML
-	private Button resetBtn;
+
 	@FXML
 	private Label errorLbl;
 	@FXML
@@ -67,11 +62,6 @@ public class ModifyBookViewController implements Initializable {
 		parent = p;
 	}
 	
-//	public ModifyBookViewController(String _ISBN,String p) {	
-//		ISBN = _ISBN;
-//		parent = p;
-//	}
-	
 	/*
 	 * Apply operation on book with database
 	 */
@@ -93,10 +83,6 @@ public class ModifyBookViewController implements Initializable {
 		Book book = getBook();
 		if (book == null)
 			return;
-		if (authors.isEmpty()) {
-			errorLbl.setText("Authors' list is empty");
-			return;
-		}
 
 		OperationResponse or = bookController.updateBook(book);
 

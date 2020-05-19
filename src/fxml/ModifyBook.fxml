@@ -7,12 +7,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyBookViewController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyBookViewController">
    <left>
       <VBox prefHeight="400.0" prefWidth="296.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,23 +23,14 @@
             <TextField fx:id="publishertxt" promptText="Publisher" />
             <ComboBox fx:id="categoryComBx" prefHeight="25.0" prefWidth="277.0" promptText="Category" />
             <ComboBox fx:id="yearComBx" prefHeight="25.0" prefWidth="283.0" promptText="Year" />
-            <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#resetListener" prefHeight="33.0" prefWidth="70.0" text="Reset" />
+            <Button mnemonicParsing="false" onAction="#resetListener" prefHeight="33.0" prefWidth="70.0" text="Reset" />
+            <Label fx:id="errorLbl" prefHeight="43.0" prefWidth="274.0" textFill="#f54141" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
    </left>
-   <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Separator layoutX="14.0" layoutY="3.0" prefHeight="5.0" prefWidth="570.0" />
-            <Button fx:id="cancelBtn" layoutX="468.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelListener" prefHeight="33.0" prefWidth="111.0" text="Cancel" />
-            <Button fx:id="saveBtn" layoutX="331.0" layoutY="12.0" mnemonicParsing="false" onAction="#saveListener" prefHeight="33.0" prefWidth="111.0" text="Save" />
-            <Label fx:id="errorLbl" layoutX="15.0" layoutY="5.0" prefHeight="43.0" prefWidth="274.0" textFill="#f54141" />
-         </children>
-      </AnchorPane>
-   </bottom>
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="308.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,10 +45,20 @@
                   <Insets />
                </VBox.margin>
             </HBox>
+            <Separator prefHeight="8.0" prefWidth="276.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="288.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveListener" prefHeight="33.0" prefWidth="111.0" text="Save" />
+                  <Button mnemonicParsing="false" onAction="#cancelListener" prefHeight="33.0" prefWidth="111.0" text="Cancel" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
    </center>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </BorderPane>
