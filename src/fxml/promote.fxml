@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -18,8 +20,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="uesr_name_feild" layoutX="100.0" layoutY="180.0" prefHeight="31.0" prefWidth="262.0" />
-      <Button fx:id="promoteBt" layoutX="478.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Promote" textFill="#076b1b" />
+      <JFXTextField fx:id="uesr_name_feild" layoutX="100.0" layoutY="180.0" prefHeight="31.0" prefWidth="262.0" />
+      <JFXButton fx:id="promoteBt" layoutX="478.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #dcf7e8;" text="Promote" textFill="#076b1b" />
       <Label fx:id="error" layoutX="85.0" layoutY="303.0" prefHeight="27.0" prefWidth="351.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>
