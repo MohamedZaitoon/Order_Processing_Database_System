@@ -53,7 +53,7 @@ public class Edit_profile_controller implements Initializable,DelegateUser {
     ObservableList<String> genderList  = 
     		FXCollections.observableArrayList("Male", "Female");
     private User user;
-    private final String PROFILE_URL = "../fxml/profile.fxml";
+    private final String PROFILE_URL = "/fxml/profile.fxml";
     
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;

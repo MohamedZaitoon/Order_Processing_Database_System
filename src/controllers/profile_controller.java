@@ -38,7 +38,7 @@ public class profile_controller implements Initializable, DelegateUser {
 
 	private User user;
 
-	private final String EDIT_PROFILE_URL = "../fxml/edit_profile.fxml", HOME_URL = "../fxml/Home.fxml";
+	private final String EDIT_PROFILE_URL = "/fxml/edit_profile.fxml", HOME_URL = "/fxml/Home.fxml";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
