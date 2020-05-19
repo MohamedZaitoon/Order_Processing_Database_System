@@ -98,11 +98,6 @@ public class OrdersViewController implements Initializable {
 			}
 		
 	}
-
-    @FXML
-    void backListener(ActionEvent event) {
-    		UtilControl.changeScene(event, getClass().getResource(parent));
-    }
     
 	private void clearLabels() {
 		successLbl.setText("");

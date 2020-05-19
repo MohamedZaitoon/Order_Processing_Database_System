@@ -8,12 +8,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import utils.User;
 
-public class ManagerPageViewController implements Initializable {
+public class ManagerPageViewController implements Initializable,DelegateUser {
 	private String parent = "/fxml/Home.fxml";
-
+	private User user;
+	
+	@Override
+	public void setUser(User _user) {
+		user = _user;
+	}
+	
 	@FXML
     private StackPane mainView;
 	@FXML
@@ -61,7 +71,23 @@ public class ManagerPageViewController implements Initializable {
     
 	@FXML
 	void backListener(ActionEvent event) {
-    	UtilControl.changeScene(event, getClass().getResource(parent));
+//    	try {
+//            Node node = (Node) event.getSource();
+//            Stage stage = (Stage)  node.getScene().getWindow();
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(parent));
+//            Parent root = fxmlLoader.load();
+//            Scene scene = new Scene(root);
+//            HomeController controller = fxmlLoader.getController();
+//            controller.sendUserInfo(user);
+//            stage.close();
+//            stage.setScene(scene);
+//            stage.setResizable(false);
+//            stage.show();
+//        } catch (IOException ex) {
+//            System.err.println(ex.getMessage());
+//        }
+		UtilControl.changeScene(event, getClass().getResource(parent), user);
+    	
 	}
 
 	public  void loadPaneInto(String path) {

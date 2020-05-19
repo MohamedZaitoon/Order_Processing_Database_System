@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import model.BookController;
+import utils.User;
 
 public class UtilControl {
 
@@ -169,13 +170,16 @@ public class UtilControl {
 	
 	
 	
-	public static final void changeScene(Event event, URL url) {
+	public static final void changeScene(Event event, URL url, User user) {
     	try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage)  node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(url);
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
+            if(user != null && fxmlLoader.getController() instanceof DelegateUser) {
+            	((DelegateUser)fxmlLoader.getController()).setUser(user);
+            }
             stage.close();
             stage.setScene(scene);
             stage.setResizable(false);

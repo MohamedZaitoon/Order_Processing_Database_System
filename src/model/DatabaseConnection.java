@@ -20,7 +20,7 @@ public class DatabaseConnection {
 	/*
 	 * Database user's password
 	 */
-	private final static String password = "javaJAVA$$";
+	private final static String password = "java";
 	
 	private DatabaseConnection() {}
 	

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,10 +20,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import utils.ConnectionUtil;
+import model.DatabaseConnection;
 import utils.StatusUtil;
-import utils.User;
 import utils.StatusUtil.Status;
+import utils.User;
 
 public class LoginController implements Initializable {
 	
@@ -82,7 +83,7 @@ public class LoginController implements Initializable {
     }
     
     public LoginController() {
-        connection = ConnectionUtil.connectDatabase();
+        connection = DatabaseConnection.getConnection();
     }
     
     private Status logIn() {

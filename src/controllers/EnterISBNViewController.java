@@ -15,8 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import model.BookController;
 import model.OperationResponse;
+import utils.User;
 
-public class EnterISBNViewController implements Initializable{
+public class EnterISBNViewController implements Initializable, DelegateUser{
 	@FXML
 	private AnchorPane editInputLayout;
 	@FXML
@@ -27,6 +28,7 @@ public class EnterISBNViewController implements Initializable{
 	private StackPane mainView;
 	
 	private BookController bc;
+	private User user;
 	
 	public void setParentView(StackPane _mainView) {
 		mainView = _mainView;
@@ -79,6 +81,11 @@ public class EnterISBNViewController implements Initializable{
 
 	private void clearControls() {
 		isbnTxt.setText("");
+	}
+	
+	@Override
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

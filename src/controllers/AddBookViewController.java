@@ -123,11 +123,6 @@ public class AddBookViewController implements Initializable{
          }
     }
 	
-	 @FXML
-	    void backListener(ActionEvent event) {
-	    		UtilControl.changeScene(event, getClass().getResource(parent));
-	    }
-	
 	private Book getBook() {
 		Book newBook;
 		String ISBN = isbnTxt.getText().trim();

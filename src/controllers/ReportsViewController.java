@@ -82,10 +82,6 @@ public class ReportsViewController implements Initializable {
 		}
 
 	}
-    @FXML
-    void backListener(ActionEvent event) {
-    	UtilControl.changeScene(event, getClass().getResource(parent));
-    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

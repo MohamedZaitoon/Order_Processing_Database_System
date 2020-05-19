@@ -7,10 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import utils.ConnectionUtil;
+import model.DatabaseConnection;
 import utils.StatusUtil;
 import utils.StatusUtil.Status;
 import utils.User;
@@ -75,7 +77,7 @@ public class SignUpController implements Initializable {
     
     public SignUpController() {
     	user = new User();
-    	connection = ConnectionUtil.connectDatabase();
+    	connection = DatabaseConnection.getConnection();
     }
     
     @FXML

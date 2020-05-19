@@ -2,12 +2,13 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,12 +25,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import utils.User;
+import model.DatabaseConnection;
 import utils.StatusUtil;
 import utils.StatusUtil.Status;
-import utils.ConnectionUtil;
+import utils.User;
 
-public class Edit_profile_controller implements Initializable {
+public class Edit_profile_controller implements Initializable,DelegateUser {
 
     @FXML
     private TextField user_name_feild;
@@ -66,7 +67,7 @@ public class Edit_profile_controller implements Initializable {
     private ResultSet resultSet = null;
     
     public Edit_profile_controller() {
-    	connection = ConnectionUtil.connectDatabase();
+    	connection = DatabaseConnection.getConnection();
     }
 
     @Override
@@ -78,27 +79,9 @@ public class Edit_profile_controller implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == discard) {
-        	changeScene(event, PROFILE_URL);
+        	UtilControl.changeScene(event, getClass().getResource(PROFILE_URL), user);
         } else if (event.getSource() == confirm && updating() == Status.SUCCESS) {
-        	changeScene(event, PROFILE_URL);
-        }
-    }
-
-    private void changeScene(ActionEvent event, String path) {
-    	try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            Edit_profile_controller controller = new Edit_profile_controller();
-            controller.setUser(user);
-            stage.close();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+        	UtilControl.changeScene(event, getClass().getResource(PROFILE_URL), user);
         }
     }
 

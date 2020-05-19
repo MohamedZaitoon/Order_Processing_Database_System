@@ -15,8 +15,9 @@ import javafx.scene.control.TextField;
 import model.Book;
 import model.BookController;
 import model.OperationResponse;
+import utils.User;
 
-public class ModifyBookViewController implements Initializable {
+public class ModifyBookViewController implements Initializable, DelegateUser {
 
 	private String parent = "";
 	@FXML
@@ -57,6 +58,7 @@ public class ModifyBookViewController implements Initializable {
 
 	public void setISBN(String _ISBN) {
 		ISBN = _ISBN;
+		setInfoBook();
 	}
 	public void setParent(String p) {
 		parent = p;
@@ -66,11 +68,12 @@ public class ModifyBookViewController implements Initializable {
 	 * Apply operation on book with database
 	 */
 	private BookController bookController;
+	private User user;
 
 	@FXML
 	public void cancelListener(ActionEvent event) {
 		clearFields();
-		UtilControl.changeScene(event, getClass().getResource(parent));
+		UtilControl.changeScene(event, getClass().getResource(parent), user);
 	}
 
 	@FXML
@@ -108,7 +111,7 @@ public class ModifyBookViewController implements Initializable {
 		}	
 
 		clearFields();
-		UtilControl.changeScene(event, getClass().getResource(parent));
+		UtilControl.changeScene(event, getClass().getResource(parent),user);
 	}
 
 	@FXML
@@ -174,8 +177,8 @@ public class ModifyBookViewController implements Initializable {
 			UtilControl.initCatigories(categoryComBx);
 			UtilControl.initYears(yearComBx);
 
-			setDisableFields(true);
-			errorLbl.setText("Press rest For first time");
+//			setDisableFields(true);
+//			errorLbl.setText("Press rest For first time");
 		} else {
 			errorLbl.setText("Server is disconnected");
 		}
@@ -281,6 +284,11 @@ public class ModifyBookViewController implements Initializable {
 		authorList.setDisable(bool);
 		addToAuthBtn.setDisable(bool);
 		deleteAuthorBtn.setDisable(bool);
+	}
+	@Override
+	public void setUser(User user) {
+		// TODO Auto-generated method stub
+		this.user = user;
 	}
 
 }

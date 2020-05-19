@@ -31,14 +31,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.DatabaseConnection;
 import utils.Book;
 import utils.Cart;
-import utils.ConnectionUtil;
 import utils.StatusUtil;
 import utils.StatusUtil.Status;
 import utils.User;
 
-public class HomeController implements Initializable {
+public class HomeController implements Initializable,DelegateUser {
 	
 	@FXML
     private JFXButton btnAccount;
@@ -155,9 +155,9 @@ public class HomeController implements Initializable {
         if (event.getSource() == btnLogOut) {
         	changeScene(event, StatusUtil.LOGIN_URL);
         } else if (event.getSource() == btnManage) {
-        	changeScene(event, "/fxml/ManagerPage.fxml");
+        	UtilControl.changeScene(event, getClass().getResource("/fxml/ManagerPage.fxml"), user);
         } else if (event.getSource() == btnAccount) {
-        	
+        	UtilControl.changeScene(event, getClass().getResource("/fxml/profile.fxml"), user);
         }else if (event.getSource() == btnEdit) {
         	System.out.println("Edit button");
         	changeScene(event, "/fxml/ModifyBook.fxml");
@@ -333,17 +333,11 @@ public class HomeController implements Initializable {
             Scene scene = new Scene(root);
             
             // ------------- 
-            if (event.getSource() == btnManage) {
-            	
-            } else if (event.getSource() == btnAccount) {
-            	
-            }else if (event.getSource() == btnEdit) {
-            	System.out.println("COntroller");
+            if (event.getSource() == btnEdit) {
             	String isbn = booksTable.getSelectionModel().getSelectedItem().getISBN();
             	ModifyBookViewController controller = fxmlLoader.<ModifyBookViewController>getController();
             	controller.setParent(StatusUtil.HOME_URL);
             	controller.setISBN(isbn);
-            	System.out.println("Loader");
             }
             // -------------
             
@@ -434,7 +428,7 @@ public class HomeController implements Initializable {
 	}
 	
 	public HomeController() {
-		connection = ConnectionUtil.connectDatabase();
+		connection = DatabaseConnection.getConnection();
 		cart = new Cart();
 	}
 	
@@ -458,14 +452,23 @@ public class HomeController implements Initializable {
 	public void sendUserInfo(User user) {
 		if (user != null) {
 			this.user = user;
-			if (this.user.getUserRole() == User.MANAGER) {
-				btnManage.setDisable(true);
-				btnManage.setVisible(true);
-			} else {
+			if (this.user.getUserRole().equals( User.MANAGER)) {
 				btnManage.setDisable(false);
+				btnManage.setVisible(true);
+				btnEdit.setDisable(false);
+				btnEdit.setVisible(true);
+			} else {
+				btnManage.setDisable(true);
 				btnManage.setVisible(false);
+				btnEdit.setDisable(true);
+				btnEdit.setVisible(false);
 			}
 			userID = getUserID();
 		}
+	}
+
+	@Override
+	public void setUser(User user) {
+			sendUserInfo(user);
 	}
 }
