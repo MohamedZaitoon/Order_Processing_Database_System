@@ -137,6 +137,9 @@ public class HomeController implements Initializable,DelegateUser {
     private Label lblServerConnection;
     
     @FXML
+    private Label lblUsername;
+    
+    @FXML
     private JFXButton btnEdit;
 	
 	private User user;
@@ -158,10 +161,10 @@ public class HomeController implements Initializable,DelegateUser {
         	UtilControl.changeScene(event, getClass().getResource("/fxml/ManagerPage.fxml"), user);
         } else if (event.getSource() == btnAccount) {
         	UtilControl.changeScene(event, getClass().getResource("/fxml/profile.fxml"), user);
-        }else if (event.getSource() == btnEdit) {
+        } else if (event.getSource() == btnEdit) {
         	System.out.println("Edit button");
         	changeScene(event, "/fxml/ModifyBook.fxml");
-        }
+        } 
     }
 	
 	@FXML 
@@ -332,14 +335,12 @@ public class HomeController implements Initializable,DelegateUser {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             
-            // ------------- 
             if (event.getSource() == btnEdit) {
             	String isbn = booksTable.getSelectionModel().getSelectedItem().getISBN();
             	ModifyBookViewController controller = fxmlLoader.<ModifyBookViewController>getController();
             	controller.setParent(StatusUtil.HOME_URL);
             	controller.setISBN(isbn);
             }
-            // -------------
             
             stage.close();
             stage.setScene(scene);
@@ -463,6 +464,7 @@ public class HomeController implements Initializable,DelegateUser {
 				btnEdit.setDisable(true);
 				btnEdit.setVisible(false);
 			}
+			StatusUtil.setLblError(lblUsername, Color.WHITE, user.getUsername());
 			userID = getUserID();
 		}
 	}

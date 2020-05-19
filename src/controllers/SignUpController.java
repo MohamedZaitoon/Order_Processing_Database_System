@@ -62,6 +62,9 @@ public class SignUpController implements Initializable {
     private JFXButton btnContinue;
     
     @FXML
+    private JFXButton btnBack;
+    
+    @FXML
     private Label lblErrors;
     
     @FXML
@@ -86,6 +89,8 @@ public class SignUpController implements Initializable {
         	changeScene(event, StatusUtil.HOME_URL);
         } else if (event.getSource().equals(btnResetAll)) {
         	resetAll();
+        } else if (event.getSource().equals(btnBack)) {
+        	changeScene(event, StatusUtil.LOGIN_URL);
         }
     }
     
@@ -169,7 +174,8 @@ public class SignUpController implements Initializable {
     	user.setUsername(txtUsername.getText());
     	user.setPassword(txtPassword.getText());
     	user.setGender(cobxGender.getValue());
-    	user.setBirthdate(dpkbirthdate.getValue().toString());
+    	if (dpkbirthdate.getValue() != null)
+    		user.setBirthdate(dpkbirthdate.getValue().toString());
     	user.setUserRole(User.CUSTOMER);
     }
     
