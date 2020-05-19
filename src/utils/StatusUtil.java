@@ -29,5 +29,4 @@ public class StatusUtil {
         label.setText(text);
         System.out.println(text);
     }
-	 
 }

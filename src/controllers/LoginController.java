@@ -63,8 +63,8 @@ public class LoginController implements Initializable {
             Scene scene = new Scene(root);
             
             if (event.getSource() == btnSignin) {
-            	HomeController controller = new HomeController();
-            	controller.setUser(getUserInfo(resultSet));
+            	HomeController controller = fxmlLoader.getController();
+            	controller.sendUserInfo(getUserInfo(resultSet));
             }
             
             stage.close();
