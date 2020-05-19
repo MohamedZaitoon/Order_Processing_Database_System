@@ -23,7 +23,7 @@ import model.Publisher;
 import model.PublisherController;
 
 public class ManagerPageViewController implements Initializable {
-//	private String parent = "";
+	private String parent = "/fxml/Home.fxml";
 	@FXML
 	private Button reportsBtn;
 	@FXML
@@ -68,12 +68,12 @@ public class ManagerPageViewController implements Initializable {
 
 	@FXML
 	public void showReportsListener(ActionEvent event) {
-		UtilControl.changeScene(event, getClass().getResource("/view/Reports.fxml"));
+		UtilControl.changeScene(event, getClass().getResource("/fxml/Reports.fxml"));
 	}
 
 	@FXML
 	public void confirmOrderListener(ActionEvent event) {
-		UtilControl.changeScene(event, getClass().getResource("/view/Orders.fxml"));
+		UtilControl.changeScene(event, getClass().getResource("/fxml/Orders.fxml"));
 	}
 
 	@FXML
@@ -91,7 +91,7 @@ public class ManagerPageViewController implements Initializable {
 
 	@FXML
 	public void addBookListener(ActionEvent event) {
-		UtilControl.changeScene(event, getClass().getResource("/view/AddBook.fxml"));
+		UtilControl.changeScene(event, getClass().getResource("/fxml/AddBook.fxml"));
 	}
 
 	@FXML
@@ -135,7 +135,7 @@ public class ManagerPageViewController implements Initializable {
 			System.out.println("Invalid ISBN");
 			return;
 		}
-		changeScene(event, "/view/ModifyBook.fxml");
+		changeScene(event, "/fxml/ModifyBook.fxml");
 	}
 
 	@FXML
@@ -175,7 +175,7 @@ public class ManagerPageViewController implements Initializable {
 
 	@FXML
 	void backListener(ActionEvent event) {
-//    	UtilControl.changeScene(event, getClass().getResource(parent));
+    	UtilControl.changeScene(event, getClass().getResource(parent));
 	}
 
 	private void changeScene(Event event, String path) {
@@ -187,8 +187,8 @@ public class ManagerPageViewController implements Initializable {
 			Scene scene = new Scene(root);
 			
 			ModifyBookViewController controller = fxmlLoader.getController();
-			controller.sendISBN(isbnTxt.getText());
-			
+			controller.setISBN(isbnTxt.getText());
+			controller.setParent("/fxml/ManagerPage.fxml");
 			stage.close();
 			stage.setScene(scene);
 			stage.setResizable(false);

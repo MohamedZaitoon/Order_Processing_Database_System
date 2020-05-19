@@ -19,7 +19,7 @@ import model.OperationResponse;
 
 public class AddBookViewController implements Initializable{
 	
-	private String parent = "/view/ManagerPage.fxml";
+	private String parent = "/fxml/ManagerPage.fxml";
 	@FXML private TextField isbnTxt;
 	
 	@FXML private TextField titleTxt;

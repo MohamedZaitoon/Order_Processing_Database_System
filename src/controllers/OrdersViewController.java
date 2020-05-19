@@ -16,7 +16,7 @@ import model.OperationResponse;
 import model.OrderController;
 
 public class OrdersViewController implements Initializable {
-	private String parent = "/view/ManagerPage.fxml";
+	private String parent = "/fxml/ManagerPage.fxml";
 	
 	@SuppressWarnings("rawtypes")
 	@FXML

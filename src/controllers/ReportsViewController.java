@@ -18,7 +18,7 @@ import model.ReportController.OperationType;
 
 public class ReportsViewController implements Initializable {
 	
-	private String parent = "/view/ManagerPage.fxml";
+	private String parent = "/fxml/ManagerPage.fxml";
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private TableView tableView;

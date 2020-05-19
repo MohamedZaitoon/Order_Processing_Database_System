@@ -43,7 +43,7 @@ public class Promote_controller implements Initializable {
     
     private User user;
     
-    private final String HOME_URL = "../view/ManagerPage.fxml";
+    private final String HOME_URL = "../fxml/ManagerPage.fxml";
     
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="650.0" prefWidth="1024.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="650.0" prefWidth="1024.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
       <Region layoutX="132.0" layoutY="125.0" prefHeight="480.0" prefWidth="282.0" style="-fx-background-color: #E0E0E0;" />
       <Pane layoutY="-1.0" prefHeight="110.0" prefWidth="1024.0" style="-fx-background-color: #30475e;">
@@ -26,7 +26,7 @@
             </ImageView>
             <JFXButton fx:id="btnAccount" buttonType="RAISED" layoutX="845.0" layoutY="23.0" onMousePressed="#handleButtonTransition" prefWidth="100.0" ripplerFill="#2196f3" style="-fx-background-color: #222831;" text="Account" textFill="#ececec" />
             <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="912.0" layoutY="62.0" onMousePressed="#handleButtonTransition" prefWidth="100.0" ripplerFill="#2196f3" style="-fx-background-color: #222831;" text="Log Out" textFill="#ececec" />
-            <JFXButton fx:id="btnManage" buttonType="RAISED" layoutX="132.0" layoutY="38.0" onMousePressed="#handleButtonTransition" prefHeight="34.0" prefWidth="141.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Manage" />
+            <JFXButton fx:id="btnManage" buttonType="RAISED" layoutX="132.0" layoutY="38.0" onMouseClicked="#handleButtonTransition" onMousePressed="#handleButtonTransition" prefHeight="34.0" prefWidth="141.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Manage" />
          </children>
       </Pane>
       <Region layoutX="437.0" layoutY="125.0" prefHeight="480.0" prefWidth="577.0" style="-fx-background-color: #E0E0E0;" />
@@ -108,6 +108,6 @@
          </font>
       </Label>
       <JFXComboBox fx:id="comboSearchBy" layoutX="502.0" layoutY="140.0" prefHeight="25.0" prefWidth="110.0" />
-      <JFXButton fx:id="btnEdit" buttonType="RAISED" layoutX="452.0" layoutY="568.0" onMousePressed="#handleButtonAction" prefWidth="100.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Edit" />
+      <JFXButton fx:id="btnEdit" buttonType="RAISED" layoutX="452.0" layoutY="568.0" onMouseClicked="#handleButtonTransition" onMousePressed="#handleButtonAction" prefWidth="100.0" ripplerFill="#2196f3" style="-fx-background-color: FAFAFA;" text="Edit" />
    </children>
 </AnchorPane>

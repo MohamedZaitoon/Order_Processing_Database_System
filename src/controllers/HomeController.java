@@ -17,6 +17,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -126,6 +128,9 @@ public class HomeController implements Initializable {
     
     @FXML
     private Label lblServerConnection;
+    
+    @FXML
+    private JFXButton btnEdit;
 	
 	private User user;
 	private Cart cart;
@@ -141,9 +146,12 @@ public class HomeController implements Initializable {
         if (event.getSource() == btnLogOut) {
         	changeScene(event, StatusUtil.LOGIN_URL);
         } else if (event.getSource() == btnManage) {
-        	
+        	changeScene(event, "/fxml/ManagerPage.fxml");
         } else if (event.getSource() == btnAccount) {
         	
+        }else if (event.getSource() == btnEdit) {
+        	System.out.println("Edit button");
+        	changeScene(event, "/fxml/ModifyBook.fxml");
         }
     }
 	
@@ -184,8 +192,16 @@ public class HomeController implements Initializable {
             
             // ------------- 
             if (event.getSource() == btnManage) {
+            	
             } else if (event.getSource() == btnAccount) {
             	
+            }else if (event.getSource() == btnEdit) {
+            	System.out.println("COntroller");
+            	String isbn = booksTable.getSelectionModel().getSelectedItem().getISBN();
+            	ModifyBookViewController controller = fxmlLoader.<ModifyBookViewController>getController();
+            	controller.setParent(StatusUtil.HOME_URL);
+            	controller.setISBN(isbn);
+            	System.out.println("Loader");
             }
             // -------------
             
@@ -195,6 +211,7 @@ public class HomeController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 	

@@ -18,7 +18,7 @@ import model.OperationResponse;
 
 public class ModifyBookViewController implements Initializable {
 
-	private String parent = "/view/ManagerPage.fxml";
+	private String parent = "";
 	@FXML
 	private TextField isbnTxt;
 	@FXML
@@ -60,10 +60,18 @@ public class ModifyBookViewController implements Initializable {
 
 	private ArrayList<String> addedAuthors;
 
-	public void sendISBN(String _ISBN) {
+	public void setISBN(String _ISBN) {
 		ISBN = _ISBN;
 	}
-
+	public void setParent(String p) {
+		parent = p;
+	}
+	
+//	public ModifyBookViewController(String _ISBN,String p) {	
+//		ISBN = _ISBN;
+//		parent = p;
+//	}
+	
 	/*
 	 * Apply operation on book with database
 	 */
