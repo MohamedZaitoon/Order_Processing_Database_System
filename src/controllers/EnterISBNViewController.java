@@ -28,6 +28,8 @@ public class EnterISBNViewController implements Initializable, DelegateUser{
 	private StackPane mainView;
 	
 	private BookController bc;
+	
+	@SuppressWarnings("unused")
 	private User user;
 	
 	public void setParentView(StackPane _mainView) {

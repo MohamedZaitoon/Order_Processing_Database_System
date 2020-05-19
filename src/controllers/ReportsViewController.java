@@ -18,7 +18,6 @@ import model.ReportController.OperationType;
 
 public class ReportsViewController implements Initializable {
 	
-	private String parent = "/fxml/ManagerPage.fxml";
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private TableView tableView;
@@ -39,21 +38,18 @@ public class ReportsViewController implements Initializable {
 	@SuppressWarnings("rawtypes")
 	private ObservableList<ObservableList> data;
 
-	// Event Listener on Button[#top10BooksBtn].onAction
 	@FXML
 	public void showTop10BooksListener(ActionEvent event) {
 		buildTable(OperationType.TopTenBooks);
 		System.out.println("Top 10");
 	}
 
-	// Event Listener on Button[#top5UserBtn].onAction
 	@FXML
 	public void showTop5UserListener(ActionEvent event) {
 		buildTable(OperationType.TopFiveUser);
 		System.out.println("Top five");
 	}
 
-	// Event Listener on Button[#totalSalesBtn].onAction
 	@FXML
 	public void showTotalSalesListener(ActionEvent event) {
 		errorLabel.setText("");
