@@ -108,6 +108,9 @@ public class Edit_profile_controller implements Initializable,DelegateUser {
 	            	StatusUtil.setLblError(error, Color.TOMATO, "New UserName is already token");
 	                status = Status.ERROR;
 	            } else {
+	 	            preparedStatement.setString(1, user.getUsername());
+	 	            resultSet = preparedStatement.executeQuery();
+	 	            resultSet.next();
 	            	sql = "{ CALL edit_personal_info (?, ?, ?, ?, ?, ?, ?, ?) }";
 	            	callableStatement = connection.prepareCall(sql);
 	            	callableStatement.setInt(1, resultSet.getInt(1));
@@ -116,7 +119,7 @@ public class Edit_profile_controller implements Initializable,DelegateUser {
 	            	callableStatement.setString(4, resultSet.getString(2));
 	            	callableStatement.setString(5, userName);
 	            	callableStatement.setString(6, birthDate);
-	            	callableStatement.setString(7, gender);
+	            	callableStatement.setString(7, gender.substring(0, 1));
 	            	callableStatement.setString(8, resultSet.getString(9));
 	            	callableStatement.execute();
 	                StatusUtil.setLblError(error, Color.GREEN, "Update completed");
